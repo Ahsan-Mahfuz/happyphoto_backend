@@ -437,6 +437,50 @@ cron.schedule("*/10 * * * *", async () => {
   }
 });
 
+// Exchanges a valid refresh token for a fresh access token. The mobile app
+// calls this on a 401 (the access token is short-lived) so users are not
+// logged out while their refresh token is still valid.
+const refreshToken = async (token: string) => {
+  if (!token) {
+    throw new ApiError(status.UNAUTHORIZED, "Refresh token is required");
+  }
+
+  let decoded: AuthUserPayload;
+  try {
+    decoded = jwtHelpers.verifyToken<AuthUserPayload>(
+      token,
+      config.jwt.refresh_secret as string,
+    );
+  } catch {
+    throw new ApiError(
+      status.UNAUTHORIZED,
+      "Invalid or expired refresh token",
+    );
+  }
+
+  const auth = await Auth.findById(decoded.authId);
+  if (!auth) throw new ApiError(status.NOT_FOUND, "User does not exist");
+  if (!auth.isActive)
+    throw new ApiError(status.BAD_REQUEST, "Account is not active");
+  if (auth.isBlocked)
+    throw new ApiError(status.FORBIDDEN, "You are blocked. Contact support");
+
+  const tokenPayload = {
+    authId: String(auth._id),
+    userId: String(decoded.userId),
+    email: decoded.email,
+    role: auth.role,
+  };
+
+  const accessToken = jwtHelpers.createToken(
+    tokenPayload,
+    config.jwt.secret,
+    config.jwt.expires_in as SignOptions["expiresIn"],
+  );
+
+  return { accessToken };
+};
+
 const AuthService = {
   registrationAccount,
   loginAccount,
@@ -446,6 +490,7 @@ const AuthService = {
   activateAccount,
   forgetPassOtpVerify,
   resendActivationCode,
+  refreshToken,
 };
 
 export { AuthService };

@@ -9,6 +9,7 @@ const router = express.Router();
 router
   .post("/register", limiter, AuthController.registrationAccount)
   .post("/login", limiter, AuthController.loginAccount)
+  .post("/refresh-token", limiter, AuthController.refreshToken)
   .post("/activate-account", limiter, AuthController.activateAccount)
   .post(
     "/activation-code-resend",

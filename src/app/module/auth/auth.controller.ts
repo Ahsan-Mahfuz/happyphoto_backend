@@ -63,6 +63,21 @@ const loginAccount = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const refreshToken = catchAsync(async (req: Request, res: Response) => {
+  // Accept the refresh token from the httpOnly cookie (web) or the request
+  // body (mobile app, which stores tokens itself).
+  const token =
+    (req as Request & { cookies?: Record<string, string> }).cookies
+      ?.refreshToken || req.body?.refreshToken;
+  const result = await AuthService.refreshToken(token);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Token refreshed successfully",
+    data: result,
+  });
+});
+
 const changePassword = catchAsync(async (req: Request, res: Response) => {
   if (!req.user) {
     throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
@@ -108,6 +123,7 @@ const AuthController = {
   registrationAccount,
   activateAccount,
   loginAccount,
+  refreshToken,
   changePassword,
   forgotPass,
   resetPassword,
