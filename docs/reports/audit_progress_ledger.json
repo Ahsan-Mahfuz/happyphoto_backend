@@ -1,0 +1,946 @@
+[
+  {
+    "method": "GET",
+    "path": "/admin/profile",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/edit-profile",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/admin/delete-account",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/admin/get-all-users",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/block-user",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/approve-driver",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/reject-driver",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/approve-merchant",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/approve-property-host",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/admin/get-all-orders",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/admin/get-all-delivery-requests",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/force-approve-request",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/admin/get-all-stores",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/admin/get-all-properties",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/flag-property",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/admin/get-all-payments",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/approve-payout",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/admin/reject-payout",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/admin/dashboard",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/register",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/login",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/activate-account",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/activation-code-resend",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/forgot-password",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/forget-pass-otp-verify",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/auth/reset-password",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/auth/change-password",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/cart/get-cart",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/cart/add-item",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/cart/update-item",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/cart/remove-item",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/cart/clear-cart",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/cart/set-property-code",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/chat/post-chat",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/chat/get-chat-messages",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/chat/get-all-chats",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/chat/update-message-as-seen",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/feedback/post-feedback",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/feedback/get-feedback",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/feedback/get-all-feedbacks",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/feedback/update-feedback-with-reply",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/feedback/delete-feedback",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/manage/add-terms-conditions",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/manage/get-terms-conditions",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/manage/delete-terms-conditions",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/manage/add-privacy-policy",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/manage/get-privacy-policy",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/manage/delete-privacy-policy",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/manage/add-about-us",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/manage/get-about-us",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/manage/delete-about-us",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/manage/add-faq",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/manage/get-faq",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/manage/delete-faq",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/manage/add-contact-us",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/manage/get-contact-us",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/manage/delete-contact-us",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/notification/get-notification",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/notification/get-all-notifications",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/notification/update-as-mark-unread",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/notification/delete-notification",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/order/place-order",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/order/get-order",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/order/get-my-orders",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/order/track",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/accept-order",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/update-status",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/order/active-orders",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/order/pending-requests",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/assign-driver",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/accept-delivery",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/decline-delivery",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/picked-up",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/out-for-delivery",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/deliver",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/order/cancel-order",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/payment/create-intent",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/payment/get-payment",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/payment/refund",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/payment/create-connect-account",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/payment/connect-status",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/payment/request-withdrawal",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/payment/my-payouts",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/payment/my-earnings",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/payment/my-transactions",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/product/post-product",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/product/get-product",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/product/get-all-products",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/product/update-product",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/product/delete-product",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/property/add-property",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/property/get-properties",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/property/get-property",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/property/update-property",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/property/delete-property",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/property/resolve-code",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/property/update-delivery-rules",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/property/dashboard-stats",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/property/approve-request",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/property/reject-request",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/property/pending-requests",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/property/scheduled-requests",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/property/delivered-requests",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "POST",
+    "path": "/review/post-review",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/review/get-all-reviews",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/review/get-review",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/review/update-review",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/review/delete-review",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "GET",
+    "path": "/user/profile",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/edit-profile",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "DELETE",
+    "path": "/user/delete-account",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/update-driver-information",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/update-merchant-business-information",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/update-merchant-store-location",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/update-merchant-store-profile",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/update-merchant-documents",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/update-store-settings",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  },
+  {
+    "method": "PATCH",
+    "path": "/user/submit-driver-application",
+    "tier1": "pass",
+    "tier2": "pass",
+    "tier3": "pass",
+    "state_consistency": "pass"
+  }
+]

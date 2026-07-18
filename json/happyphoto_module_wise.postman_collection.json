@@ -1,0 +1,4669 @@
+{
+  "info": {
+    "_postman_id": "d7660f2e-f7ea-45ac-a60c-2ddfcead0c88",
+    "name": "HappyPhoto Module Wise API",
+    "description": "Module-wise Postman collection generated from the HappyPhoto Express routes, controllers, and docs. Query parameters and request body fields include short descriptions for faster testing. Set the url and token variables before sending protected requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/register",
+              "host": ["{{url}}"],
+              "path": ["auth", "register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"SecureP@ss1\",\n  \"confirmPassword\": \"SecureP@ss1\",\n  \"role\": \"USER\",\n  \"phoneNumber\": \"+1234567890\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `name`: Display name for the user, admin, product, or content owner.\n- `email`: Valid account email address.\n- `password`: Current account password.\n- `confirmPassword`: Must match the password or newPassword field.\n- `role`: Account role. Supported values include USER, PROPERTY_HOST, DRIVER, MERCHANT, ADMIN.\n- `phoneNumber`: Phone number in local or international format."
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/login",
+              "host": ["{{url}}"],
+              "path": ["auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"SecureP@ss1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address.\n- `password`: Current account password."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json && json.data && json.data.accessToken) {",
+                  "  pm.collectionVariables.set('token', json.data.accessToken);",
+                  "  pm.collectionVariables.set('user_token', json.data.accessToken);",
+                  "}",
+                  "if (json && json.data && json.data.refreshToken) {",
+                  "  pm.collectionVariables.set('refresh_token', json.data.refreshToken);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "activate-account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/activate-account",
+              "host": ["{{url}}"],
+              "path": ["auth", "activate-account"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"activationCode\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address.\n- `activationCode`: OTP code sent to the email during registration."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json && json.data && json.data.accessToken) {",
+                  "  pm.collectionVariables.set('token', json.data.accessToken);",
+                  "  pm.collectionVariables.set('user_token', json.data.accessToken);",
+                  "}",
+                  "if (json && json.data && json.data.refreshToken) {",
+                  "  pm.collectionVariables.set('refresh_token', json.data.refreshToken);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "activation-code-resend",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/activation-code-resend",
+              "host": ["{{url}}"],
+              "path": ["auth", "activation-code-resend"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address."
+          },
+          "response": []
+        },
+        {
+          "name": "forgot-password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/forgot-password",
+              "host": ["{{url}}"],
+              "path": ["auth", "forgot-password"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address."
+          },
+          "response": []
+        },
+        {
+          "name": "forget-pass-otp-verify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/forget-pass-otp-verify",
+              "host": ["{{url}}"],
+              "path": ["auth", "forget-pass-otp-verify"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"code\": \"654321\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address.\n- `code`: OTP code sent during the forgot-password flow."
+          },
+          "response": []
+        },
+        {
+          "name": "reset-password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/reset-password",
+              "host": ["{{url}}"],
+              "path": ["auth", "reset-password"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"newPassword\": \"NewSecureP@ss1\",\n  \"confirmPassword\": \"NewSecureP@ss1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address.\n- `newPassword`: New password to set after verification or password change.\n- `confirmPassword`: Must match the password or newPassword field."
+          },
+          "response": []
+        },
+        {
+          "name": "change-password",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/auth/change-password",
+              "host": ["{{url}}"],
+              "path": ["auth", "change-password"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"OldP@ss1\",\n  \"newPassword\": \"NewSecureP@ss1\",\n  \"confirmPassword\": \"NewSecureP@ss1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `oldPassword`: Current password used to authorize the password change.\n- `newPassword`: New password to set after verification or password change.\n- `confirmPassword`: Must match the password or newPassword field."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/profile",
+              "host": ["{{url}}"],
+              "path": ["user", "profile"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit-profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/edit-profile",
+              "host": ["{{url}}"],
+              "path": ["user", "edit-profile"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Updated Name",
+                  "type": "text",
+                  "description": "Display name for the user, admin, product, or content owner."
+                },
+                {
+                  "key": "phoneNumber",
+                  "value": "+1234567890",
+                  "type": "text",
+                  "description": "Phone number in local or international format."
+                },
+                {
+                  "key": "dateOfBirth",
+                  "value": "1995-01-01",
+                  "type": "text",
+                  "description": "Date of birth, preferably ISO date format such as 1995-01-01."
+                },
+                {
+                  "key": "address",
+                  "value": "123 Main St",
+                  "type": "text",
+                  "description": "Physical address or profile address text."
+                },
+                {
+                  "key": "profile_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Image file used as the user or admin profile photo."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `name`: Display name for the user, admin, product, or content owner.\n- `phoneNumber`: Phone number in local or international format.\n- `dateOfBirth`: Date of birth, preferably ISO date format such as 1995-01-01.\n- `address`: Physical address or profile address text.\n- `profile_image`: Image file used as the user or admin profile photo."
+          },
+          "response": []
+        },
+        {
+          "name": "delete-account",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/user/delete-account",
+              "host": ["{{url}}"],
+              "path": ["user", "delete-account"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"SecureP@ss1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address.\n- `password`: Current account password."
+          },
+          "response": []
+        },
+        {
+          "name": "update-driver-information",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/update-driver-information",
+              "host": ["{{url}}"],
+              "path": ["user", "update-driver-information"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "licenseNumber",
+                  "value": "ABC12345",
+                  "type": "text",
+                  "description": "Driver license number for driver verification."
+                },
+                {
+                  "key": "plateNumber",
+                  "value": "XYZ-9876",
+                  "type": "text",
+                  "description": "Vehicle plate number for driver verification."
+                },
+                {
+                  "key": "drivingLicense_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Image file of the driving license."
+                },
+                {
+                  "key": "idCard_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Image file of the driver identity card."
+                },
+                {
+                  "key": "vehicleRegistration_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Image file of the vehicle registration document."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `licenseNumber`: Driver license number for driver verification.\n- `plateNumber`: Vehicle plate number for driver verification.\n- `drivingLicense_image`: Image file of the driving license.\n- `idCard_image`: Image file of the driver identity card.\n- `vehicleRegistration_image`: Image file of the vehicle registration document."
+          },
+          "response": []
+        },
+        {
+          "name": "update-merchant-business-information",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/user/update-merchant-business-information",
+              "host": ["{{url}}"],
+              "path": ["user", "update-merchant-business-information"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"storeName\": \"Awesome Store\",\n  \"businessType\": \"Retail\",\n  \"businessRegistrationNumber\": \"REG123456\",\n  \"vatNumber\": \"VAT987654\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `storeName`: Public store name shown to customers.\n- `businessType`: Type of business, for example Retail, Grocery, or Restaurant.\n- `businessRegistrationNumber`: Official business registration number.\n- `vatNumber`: VAT or tax registration number if applicable."
+          },
+          "response": []
+        },
+        {
+          "name": "update-merchant-store-location",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/user/update-merchant-store-location",
+              "host": ["{{url}}"],
+              "path": ["user", "update-merchant-store-location"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"storeLocationCoordinatesLat\": 40.7128,\n  \"storeLocationCoordinatesLong\": -74.006,\n  \"storeAddress\": \"123 Main St\",\n  \"storeCity\": \"New York\",\n  \"storeState\": \"NY\",\n  \"storePostalCode\": \"10001\",\n  \"storeCountry\": \"USA\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `storeLocationCoordinatesLat`: Latitude coordinate for the merchant store.\n- `storeLocationCoordinatesLong`: Longitude coordinate for the merchant store.\n- `storeAddress`: Street address of the merchant store.\n- `storeCity`: City where the store is located.\n- `storeState`: State, division, or province of the store.\n- `storePostalCode`: Postal or ZIP code for the store address.\n- `storeCountry`: Country where the store is located."
+          },
+          "response": []
+        },
+        {
+          "name": "update-merchant-store-profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/update-merchant-store-profile",
+              "host": ["{{url}}"],
+              "path": ["user", "update-merchant-store-profile"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "storeDescription",
+                  "value": "Fresh meals and fast delivery.",
+                  "type": "text",
+                  "description": "Short public description of the store."
+                },
+                {
+                  "key": "storeOpeningTime",
+                  "value": "09:00",
+                  "type": "text",
+                  "description": "Store opening time, for example 09:00 or 09:00 AM."
+                },
+                {
+                  "key": "storeClosingTime",
+                  "value": "22:00",
+                  "type": "text",
+                  "description": "Store closing time, for example 22:00 or 10:00 PM."
+                },
+                {
+                  "key": "storeAveragePrepTime",
+                  "value": "25",
+                  "type": "text",
+                  "description": "Average preparation time in minutes."
+                },
+                {
+                  "key": "store_logo",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Store logo image file."
+                },
+                {
+                  "key": "store_banner_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Store banner image file."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `storeDescription`: Short public description of the store.\n- `storeOpeningTime`: Store opening time, for example 09:00 or 09:00 AM.\n- `storeClosingTime`: Store closing time, for example 22:00 or 10:00 PM.\n- `storeAveragePrepTime`: Average preparation time in minutes.\n- `store_logo`: Store logo image file.\n- `store_banner_image`: Store banner image file."
+          },
+          "response": []
+        },
+        {
+          "name": "update-merchant-documents",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/update-merchant-documents",
+              "host": ["{{url}}"],
+              "path": ["user", "update-merchant-documents"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "store_front_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Photo of the physical storefront."
+                },
+                {
+                  "key": "trade_license_document",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Trade license document image."
+                },
+                {
+                  "key": "merchant_id_card_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Merchant owner identity card image."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `store_front_image`: Photo of the physical storefront.\n- `trade_license_document`: Trade license document image.\n- `merchant_id_card_image`: Merchant owner identity card image."
+          },
+          "response": []
+        },
+        {
+          "name": "update-store-settings",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/user/update-store-settings",
+              "host": ["{{url}}"],
+              "path": ["user", "update-store-settings"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"storeDeliveryRadius\": 5,\n  \"storeMinimumOrder\": 20,\n  \"storePhoneNumber\": \"+1234567890\",\n  \"storeSupportEmail\": \"support@awesomestore.com\",\n  \"storeIsOpen\": true,\n  \"businessHours\": {\n    \"monday\": {\n      \"open\": \"09:00\",\n      \"close\": \"17:00\"\n    },\n    \"tuesday\": {\n      \"open\": \"09:00\",\n      \"close\": \"17:00\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `storeDeliveryRadius`: Maximum delivery radius served by the store.\n- `storeMinimumOrder`: Minimum order total required by the store.\n- `storePhoneNumber`: Public support phone number for the store.\n- `storeSupportEmail`: Public support email address for the store.\n- `storeIsOpen`: Whether the store is currently accepting orders.\n- `businessHours`: Weekly opening schedule. Each day can include open and close times.\n- `businessHours.[day].open`: Opening time for that day.\n- `businessHours.[day].close`: Closing time for that day."
+          },
+          "response": []
+        },
+        {
+          "name": "submit-driver-application",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/user/submit-driver-application",
+              "host": ["{{url}}"],
+              "path": ["user", "submit-driver-application"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleType\": \"car\",\n  \"licenseNumber\": \"ABC12345\",\n  \"plateNumber\": \"XYZ-9876\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `vehicleType`: Vehicle type such as car, bike, or scooter.\n- `licenseNumber`: Driver license number for driver verification.\n- `plateNumber`: Vehicle plate number for driver verification."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/profile",
+              "host": ["{{url}}"],
+              "path": ["admin", "profile"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit-profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/edit-profile",
+              "host": ["{{url}}"],
+              "path": ["admin", "edit-profile"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Super Admin",
+                  "type": "text",
+                  "description": "Display name for the user, admin, product, or content owner."
+                },
+                {
+                  "key": "phoneNumber",
+                  "value": "+1234567890",
+                  "type": "text",
+                  "description": "Phone number in local or international format."
+                },
+                {
+                  "key": "address",
+                  "value": "HQ Office",
+                  "type": "text",
+                  "description": "Physical address or profile address text."
+                },
+                {
+                  "key": "profile_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Image file used as the user or admin profile photo."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `name`: Display name for the user, admin, product, or content owner.\n- `phoneNumber`: Phone number in local or international format.\n- `address`: Physical address or profile address text.\n- `profile_image`: Image file used as the user or admin profile photo."
+          },
+          "response": []
+        },
+        {
+          "name": "delete-account",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/delete-account",
+              "host": ["{{url}}"],
+              "path": ["admin", "delete-account"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"SecureP@ss1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `email`: Valid account email address.\n- `password`: Current account password."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/get-all-users?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["admin", "get-all-users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "john",
+                  "disabled": true,
+                  "description": "Optional free-text search across configured searchable fields."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination and optional search/filter fields from the query builder.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `searchTerm`: Optional free-text search across configured searchable fields. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "block-user",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/block-user",
+              "host": ["{{url}}"],
+              "path": ["admin", "block-user"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authId\": \"{{authId}}\",\n  \"isBlocked\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `authId`: MongoDB ObjectId of the Auth record.\n- `isBlocked`: true blocks the account; false unblocks it."
+          },
+          "response": []
+        },
+        {
+          "name": "approve-driver",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/approve-driver",
+              "host": ["{{url}}"],
+              "path": ["admin", "approve-driver"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{driverId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `userId`: MongoDB ObjectId of a user profile."
+          },
+          "response": []
+        },
+        {
+          "name": "reject-driver",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/reject-driver",
+              "host": ["{{url}}"],
+              "path": ["admin", "reject-driver"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{driverId}}\",\n  \"reason\": \"Invalid documents provided.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `userId`: MongoDB ObjectId of a user profile.\n- `reason`: Short reason shown in admin, rejection, refund, or cancellation history."
+          },
+          "response": []
+        },
+        {
+          "name": "approve-merchant",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/approve-merchant",
+              "host": ["{{url}}"],
+              "path": ["admin", "approve-merchant"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{merchantId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `userId`: MongoDB ObjectId of a user profile."
+          },
+          "response": []
+        },
+        {
+          "name": "approve-property-host",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/approve-property-host",
+              "host": ["{{url}}"],
+              "path": ["admin", "approve-property-host"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `userId`: MongoDB ObjectId of a user profile."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/get-all-orders?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["admin", "get-all-orders"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "disabled": true,
+                  "description": "Optional status filter, for example pending, preparing, delivered, or completed depending on this module."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination and optional order status filtering.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `status`: Optional status filter, for example pending, preparing, delivered, or completed depending on this module. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-delivery-requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/get-all-delivery-requests?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["admin", "get-all-delivery-requests"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "disabled": true,
+                  "description": "Optional status filter, for example pending, preparing, delivered, or completed depending on this module."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination and optional delivery request status filtering.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `status`: Optional status filter, for example pending, preparing, delivered, or completed depending on this module. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "force-approve-request",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/force-approve-request",
+              "host": ["{{url}}"],
+              "path": ["admin", "force-approve-request"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"{{requestId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `requestId`: MongoDB ObjectId of a delivery request."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-stores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/get-all-stores?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["admin", "get-all-stores"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "store",
+                  "disabled": true,
+                  "description": "Optional free-text search across configured searchable fields."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination and optional store search.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `searchTerm`: Optional free-text search across configured searchable fields. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/get-all-properties?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["admin", "get-all-properties"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "condo",
+                  "disabled": true,
+                  "description": "Optional free-text search across configured searchable fields."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination and optional property search.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `searchTerm`: Optional free-text search across configured searchable fields. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "flag-property",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/flag-property",
+              "host": ["{{url}}"],
+              "path": ["admin", "flag-property"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"{{propertyId}}\",\n  \"reason\": \"Violates safety guidelines\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `propertyId`: MongoDB ObjectId of the property.\n- `reason`: Short reason shown in admin, rejection, refund, or cancellation history."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-payments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/get-all-payments?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["admin", "get-all-payments"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "disabled": true,
+                  "description": "Optional status filter, for example pending, preparing, delivered, or completed depending on this module."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination and optional payment or payout status filtering.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `status`: Optional status filter, for example pending, preparing, delivered, or completed depending on this module. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "approve-payout",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/approve-payout",
+              "host": ["{{url}}"],
+              "path": ["admin", "approve-payout"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payoutId\": \"{{payoutId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `payoutId`: MongoDB ObjectId of a payout request."
+          },
+          "response": []
+        },
+        {
+          "name": "reject-payout",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/admin/reject-payout",
+              "host": ["{{url}}"],
+              "path": ["admin", "reject-payout"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payoutId\": \"{{payoutId}}\",\n  \"reason\": \"Suspicious account activity\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `payoutId`: MongoDB ObjectId of a payout request.\n- `reason`: Short reason shown in admin, rejection, refund, or cancellation history."
+          },
+          "response": []
+        },
+        {
+          "name": "dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/admin/dashboard",
+              "host": ["{{url}}"],
+              "path": ["admin", "dashboard"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "post-product",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/product/post-product",
+              "host": ["{{url}}"],
+              "path": ["product", "post-product"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Burger",
+                  "type": "text",
+                  "description": "Display name for the user, admin, product, or content owner."
+                },
+                {
+                  "key": "category",
+                  "value": "Fast Food",
+                  "type": "text",
+                  "description": "Product category used for grouping and filtering."
+                },
+                {
+                  "key": "price",
+                  "value": "10.99",
+                  "type": "text",
+                  "description": "Product price as a number."
+                },
+                {
+                  "key": "quantity",
+                  "value": "100",
+                  "type": "text",
+                  "description": "Quantity to add, update, or keep in stock."
+                },
+                {
+                  "key": "description",
+                  "value": "Delicious burger",
+                  "type": "text",
+                  "description": "Main text or HTML content for this record."
+                },
+                {
+                  "key": "product_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Product image file."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `name`: Display name for the user, admin, product, or content owner.\n- `category`: Product category used for grouping and filtering.\n- `price`: Product price as a number.\n- `quantity`: Quantity to add, update, or keep in stock.\n- `description`: Main text or HTML content for this record.\n- `product_image`: Product image file."
+          },
+          "response": []
+        },
+        {
+          "name": "get-product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/product/get-product?productId={{productId}}",
+              "host": ["{{url}}"],
+              "path": ["product", "get-product"],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "{{productId}}",
+                  "description": "MongoDB ObjectId of the product to retrieve or operate on."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `productId`: MongoDB ObjectId of the product to retrieve or operate on."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/product/get-all-products?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["product", "get-all-products"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "burger",
+                  "disabled": true,
+                  "description": "Optional free-text search across configured searchable fields."
+                },
+                {
+                  "key": "category",
+                  "value": "Fast Food",
+                  "disabled": true,
+                  "description": "Optional product category filter."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination, text search, category filtering, sorting, and field selection if enabled by the query builder.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `searchTerm`: Optional free-text search across configured searchable fields. Optional sample; enable it when needed.\n- `category`: Optional product category filter. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "update-product",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/product/update-product",
+              "host": ["{{url}}"],
+              "path": ["product", "update-product"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "productId",
+                  "value": "{{productId}}",
+                  "type": "text",
+                  "description": "MongoDB ObjectId of the product."
+                },
+                {
+                  "key": "name",
+                  "value": "Burger Deluxe",
+                  "type": "text",
+                  "description": "Display name for the user, admin, product, or content owner."
+                },
+                {
+                  "key": "category",
+                  "value": "Fast Food",
+                  "type": "text",
+                  "description": "Product category used for grouping and filtering."
+                },
+                {
+                  "key": "price",
+                  "value": "12.99",
+                  "type": "text",
+                  "description": "Product price as a number."
+                },
+                {
+                  "key": "quantity",
+                  "value": "80",
+                  "type": "text",
+                  "description": "Quantity to add, update, or keep in stock."
+                },
+                {
+                  "key": "description",
+                  "value": "Updated product description",
+                  "type": "text",
+                  "description": "Main text or HTML content for this record."
+                },
+                {
+                  "key": "product_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Product image file."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `productId`: MongoDB ObjectId of the product.\n- `name`: Display name for the user, admin, product, or content owner.\n- `category`: Product category used for grouping and filtering.\n- `price`: Product price as a number.\n- `quantity`: Quantity to add, update, or keep in stock.\n- `description`: Main text or HTML content for this record.\n- `product_image`: Product image file."
+          },
+          "response": []
+        },
+        {
+          "name": "delete-product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/product/delete-product",
+              "host": ["{{url}}"],
+              "path": ["product", "delete-product"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `productId`: MongoDB ObjectId of the product."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Property",
+      "item": [
+        {
+          "name": "add-property",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/add-property",
+              "host": ["{{url}}"],
+              "path": ["property", "add-property"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "propertyName",
+                  "value": "Beachfront Condo",
+                  "type": "text",
+                  "description": "Public name of the property."
+                },
+                {
+                  "key": "propertyType",
+                  "value": "condo",
+                  "type": "text",
+                  "description": "Property type such as apartment, vacation_rental, house, condo, or other."
+                },
+                {
+                  "key": "physicalAddress",
+                  "value": "123 Ocean Dr",
+                  "type": "text",
+                  "description": "Full property street address, only exposed where allowed."
+                },
+                {
+                  "key": "city",
+                  "value": "Miami",
+                  "type": "text",
+                  "description": "Property city."
+                },
+                {
+                  "key": "state",
+                  "value": "FL",
+                  "type": "text",
+                  "description": "Property state, division, or province."
+                },
+                {
+                  "key": "postalCode",
+                  "value": "33139",
+                  "type": "text",
+                  "description": "Property postal or ZIP code."
+                },
+                {
+                  "key": "country",
+                  "value": "USA",
+                  "type": "text",
+                  "description": "Property country."
+                },
+                {
+                  "key": "lat",
+                  "value": "25.79",
+                  "type": "text",
+                  "description": "Property latitude coordinate."
+                },
+                {
+                  "key": "long",
+                  "value": "-80.13",
+                  "type": "text",
+                  "description": "Property longitude coordinate."
+                },
+                {
+                  "key": "property_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Property image file."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `propertyName`: Public name of the property.\n- `propertyType`: Property type such as apartment, vacation_rental, house, condo, or other.\n- `physicalAddress`: Full property street address, only exposed where allowed.\n- `city`: Property city.\n- `state`: Property state, division, or province.\n- `postalCode`: Property postal or ZIP code.\n- `country`: Property country.\n- `lat`: Property latitude coordinate.\n- `long`: Property longitude coordinate.\n- `property_image`: Property image file."
+          },
+          "response": []
+        },
+        {
+          "name": "get-properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/get-properties?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["property", "get-properties"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "condo",
+                  "disabled": true,
+                  "description": "Optional free-text search across configured searchable fields."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nSupports pagination and property search for the authenticated property host.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `searchTerm`: Optional free-text search across configured searchable fields. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "get-property",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/get-property?propertyId={{propertyId}}",
+              "host": ["{{url}}"],
+              "path": ["property", "get-property"],
+              "query": [
+                {
+                  "key": "propertyId",
+                  "value": "{{propertyId}}",
+                  "description": "MongoDB ObjectId of the property to retrieve or operate on."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `propertyId`: MongoDB ObjectId of the property to retrieve or operate on."
+          },
+          "response": []
+        },
+        {
+          "name": "update-property",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/update-property",
+              "host": ["{{url}}"],
+              "path": ["property", "update-property"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "propertyId",
+                  "value": "{{propertyId}}",
+                  "type": "text",
+                  "description": "MongoDB ObjectId of the property."
+                },
+                {
+                  "key": "propertyName",
+                  "value": "Beachfront Condo Updated",
+                  "type": "text",
+                  "description": "Public name of the property."
+                },
+                {
+                  "key": "propertyType",
+                  "value": "condo",
+                  "type": "text",
+                  "description": "Property type such as apartment, vacation_rental, house, condo, or other."
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "type": "text",
+                  "description": "Whether this property is active and usable for deliveries."
+                },
+                {
+                  "key": "property_image",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Property image file."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `propertyId`: MongoDB ObjectId of the property.\n- `propertyName`: Public name of the property.\n- `propertyType`: Property type such as apartment, vacation_rental, house, condo, or other.\n- `isActive`: Whether this property is active and usable for deliveries.\n- `property_image`: Property image file."
+          },
+          "response": []
+        },
+        {
+          "name": "delete-property",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/property/delete-property",
+              "host": ["{{url}}"],
+              "path": ["property", "delete-property"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"{{propertyId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `propertyId`: MongoDB ObjectId of the property."
+          },
+          "response": []
+        },
+        {
+          "name": "resolve-code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/resolve-code?propertyCode={{propertyCode}}",
+              "host": ["{{url}}"],
+              "path": ["property", "resolve-code"],
+              "query": [
+                {
+                  "key": "propertyCode",
+                  "value": "{{propertyCode}}",
+                  "description": "Short unique property code used to resolve or attach a delivery destination."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `propertyCode`: Short unique property code used to resolve or attach a delivery destination."
+          },
+          "response": []
+        },
+        {
+          "name": "update-delivery-rules",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/property/update-delivery-rules",
+              "host": ["{{url}}"],
+              "path": ["property", "update-delivery-rules"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"{{propertyId}}\",\n  \"defaultWindowStart\": \"14:00\",\n  \"defaultWindowEnd\": \"16:00\",\n  \"guestStayCheckIn\": \"2026-08-01T15:00:00Z\",\n  \"guestStayCheckOut\": \"2026-08-10T11:00:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `propertyId`: MongoDB ObjectId of the property.\n- `defaultWindowStart`: Default delivery window start time for the property.\n- `defaultWindowEnd`: Default delivery window end time for the property.\n- `guestStayCheckIn`: Guest check-in date/time in ISO 8601 format.\n- `guestStayCheckOut`: Guest check-out date/time in ISO 8601 format."
+          },
+          "response": []
+        },
+        {
+          "name": "dashboard-stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/dashboard-stats",
+              "host": ["{{url}}"],
+              "path": ["property", "dashboard-stats"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "approve-request",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/property/approve-request",
+              "host": ["{{url}}"],
+              "path": ["property", "approve-request"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"{{requestId}}\",\n  \"deliveryWindowStart\": \"2026-08-02T14:00:00Z\",\n  \"deliveryWindowEnd\": \"2026-08-02T16:00:00Z\",\n  \"guestStayCheckIn\": \"2026-08-01T15:00:00Z\",\n  \"guestStayCheckOut\": \"2026-08-10T11:00:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `requestId`: MongoDB ObjectId of a delivery request.\n- `deliveryWindowStart`: Requested or approved delivery window start date/time in ISO 8601 format.\n- `deliveryWindowEnd`: Requested or approved delivery window end date/time in ISO 8601 format.\n- `guestStayCheckIn`: Guest check-in date/time in ISO 8601 format.\n- `guestStayCheckOut`: Guest check-out date/time in ISO 8601 format."
+          },
+          "response": []
+        },
+        {
+          "name": "reject-request",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/property/reject-request",
+              "host": ["{{url}}"],
+              "path": ["property", "reject-request"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"{{requestId}}\",\n  \"reason\": \"Host not available during requested time\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `requestId`: MongoDB ObjectId of a delivery request.\n- `reason`: Short reason shown in admin, rejection, refund, or cancellation history."
+          },
+          "response": []
+        },
+        {
+          "name": "pending-requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/pending-requests?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["property", "pending-requests"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns pending host delivery requests with pagination.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page."
+          },
+          "response": []
+        },
+        {
+          "name": "scheduled-requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/scheduled-requests?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["property", "scheduled-requests"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns approved or force-approved host delivery requests with pagination.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page."
+          },
+          "response": []
+        },
+        {
+          "name": "delivered-requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/property/delivered-requests?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["property", "delivered-requests"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{property_host_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns delivered host requests. Pagination params are included for consistency.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "get-cart",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/cart/get-cart",
+              "host": ["{{url}}"],
+              "path": ["cart", "get-cart"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add-item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/cart/add-item",
+              "host": ["{{url}}"],
+              "path": ["cart", "add-item"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `productId`: MongoDB ObjectId of the product.\n- `quantity`: Quantity to add, update, or keep in stock."
+          },
+          "response": []
+        },
+        {
+          "name": "update-item",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/cart/update-item",
+              "host": ["{{url}}"],
+              "path": ["cart", "update-item"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `productId`: MongoDB ObjectId of the product.\n- `quantity`: Quantity to add, update, or keep in stock."
+          },
+          "response": []
+        },
+        {
+          "name": "remove-item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/cart/remove-item",
+              "host": ["{{url}}"],
+              "path": ["cart", "remove-item"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `productId`: MongoDB ObjectId of the product."
+          },
+          "response": []
+        },
+        {
+          "name": "clear-cart",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/cart/clear-cart",
+              "host": ["{{url}}"],
+              "path": ["cart", "clear-cart"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "set-property-code",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/cart/set-property-code",
+              "host": ["{{url}}"],
+              "path": ["cart", "set-property-code"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyCode\": \"{{propertyCode}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `propertyCode`: Unique guest/property code used for property-based deliveries."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "place-order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/place-order",
+              "host": ["{{url}}"],
+              "path": ["order", "place-order"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyCode\": \"{{propertyCode}}\",\n  \"deliveryAddress\": \"123 Main St\",\n  \"deliveryLat\": \"40.7128\",\n  \"deliveryLong\": \"-74.0060\",\n  \"specialInstructions\": \"Leave at the door\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `propertyCode`: Unique guest/property code used for property-based deliveries.\n- `deliveryAddress`: Manual delivery address when no propertyCode is used.\n- `deliveryLat`: Delivery latitude coordinate.\n- `deliveryLong`: Delivery longitude coordinate.\n- `specialInstructions`: Optional delivery notes for merchant, host, or driver."
+          },
+          "response": []
+        },
+        {
+          "name": "get-order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/get-order?orderId={{orderId}}",
+              "host": ["{{url}}"],
+              "path": ["order", "get-order"],
+              "query": [
+                {
+                  "key": "orderId",
+                  "value": "{{orderId}}",
+                  "description": "MongoDB ObjectId of the order. Some responses also include a human-readable orderId like ORD-123."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `orderId`: MongoDB ObjectId of the order. Some responses also include a human-readable orderId like ORD-123."
+          },
+          "response": []
+        },
+        {
+          "name": "get-my-orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/get-my-orders?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["order", "get-my-orders"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "disabled": true,
+                  "description": "Optional status filter, for example pending, preparing, delivered, or completed depending on this module."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns role-specific orders and supports pagination plus optional status filtering.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `status`: Optional status filter, for example pending, preparing, delivered, or completed depending on this module. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "track",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/track?orderId={{orderId}}",
+              "host": ["{{url}}"],
+              "path": ["order", "track"],
+              "query": [
+                {
+                  "key": "orderId",
+                  "value": "{{orderId}}",
+                  "description": "MongoDB ObjectId of the order. Some responses also include a human-readable orderId like ORD-123."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `orderId`: MongoDB ObjectId of the order. Some responses also include a human-readable orderId like ORD-123."
+          },
+          "response": []
+        },
+        {
+          "name": "accept-order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/accept-order",
+              "host": ["{{url}}"],
+              "path": ["order", "accept-order"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order."
+          },
+          "response": []
+        },
+        {
+          "name": "update-status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/update-status",
+              "host": ["{{url}}"],
+              "path": ["order", "update-status"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order.\n- `status`: Next workflow status allowed for this endpoint."
+          },
+          "response": []
+        },
+        {
+          "name": "active-orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/active-orders?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["order", "active-orders"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nDriver list of active deliveries, paginated.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page."
+          },
+          "response": []
+        },
+        {
+          "name": "pending-requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/pending-requests?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["order", "pending-requests"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nDriver list of ready-for-pickup delivery requests, paginated.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page."
+          },
+          "response": []
+        },
+        {
+          "name": "assign-driver",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/assign-driver",
+              "host": ["{{url}}"],
+              "path": ["order", "assign-driver"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"driverId\": \"{{driverId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order.\n- `driverId`: MongoDB ObjectId of the driver profile."
+          },
+          "response": []
+        },
+        {
+          "name": "accept-delivery",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/accept-delivery",
+              "host": ["{{url}}"],
+              "path": ["order", "accept-delivery"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order."
+          },
+          "response": []
+        },
+        {
+          "name": "decline-delivery",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/decline-delivery",
+              "host": ["{{url}}"],
+              "path": ["order", "decline-delivery"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "picked-up",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/picked-up",
+              "host": ["{{url}}"],
+              "path": ["order", "picked-up"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order."
+          },
+          "response": []
+        },
+        {
+          "name": "out-for-delivery",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/out-for-delivery",
+              "host": ["{{url}}"],
+              "path": ["order", "out-for-delivery"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order."
+          },
+          "response": []
+        },
+        {
+          "name": "deliver",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/deliver",
+              "host": ["{{url}}"],
+              "path": ["order", "deliver"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "orderId",
+                  "value": "{{orderId}}",
+                  "type": "text",
+                  "description": "MongoDB ObjectId of the order."
+                },
+                {
+                  "key": "proof_of_delivery",
+                  "type": "file",
+                  "src": "{{sample_file}}",
+                  "description": "Image proof uploaded by the driver when delivering an order."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{driver_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order.\n- `proof_of_delivery`: Image proof uploaded by the driver when delivering an order."
+          },
+          "response": []
+        },
+        {
+          "name": "cancel-order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/order/cancel-order",
+              "host": ["{{url}}"],
+              "path": ["order", "cancel-order"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"reason\": \"Customer requested cancellation\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order.\n- `reason`: Short reason shown in admin, rejection, refund, or cancellation history."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "create-intent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/payment/create-intent",
+              "host": ["{{url}}"],
+              "path": ["payment", "create-intent"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"currency\": \"usd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order.\n- `currency`: Three-letter payment currency code such as usd."
+          },
+          "response": []
+        },
+        {
+          "name": "get-payment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/payment/get-payment?paymentId={{paymentId}}",
+              "host": ["{{url}}"],
+              "path": ["payment", "get-payment"],
+              "query": [
+                {
+                  "key": "paymentId",
+                  "value": "{{paymentId}}",
+                  "description": "MongoDB ObjectId of the payment document."
+                },
+                {
+                  "key": "orderId",
+                  "value": "{{orderId}}",
+                  "disabled": true,
+                  "description": "MongoDB ObjectId of the order. Some responses also include a human-readable orderId like ORD-123."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `paymentId`: MongoDB ObjectId of the payment document.\n- `orderId`: MongoDB ObjectId of the order. Some responses also include a human-readable orderId like ORD-123. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/payment/refund",
+              "host": ["{{url}}"],
+              "path": ["payment", "refund"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentId\": \"{{paymentId}}\",\n  \"amount\": 50,\n  \"reason\": \"requested_by_customer\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `paymentId`: MongoDB ObjectId of the payment document.\n- `amount`: Payment, refund, or withdrawal amount.\n- `reason`: Short reason shown in admin, rejection, refund, or cancellation history."
+          },
+          "response": []
+        },
+        {
+          "name": "create-connect-account",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/payment/create-connect-account",
+              "host": ["{{url}}"],
+              "path": ["payment", "create-connect-account"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "connect-status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/payment/connect-status",
+              "host": ["{{url}}"],
+              "path": ["payment", "connect-status"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "request-withdrawal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/payment/request-withdrawal",
+              "host": ["{{url}}"],
+              "path": ["payment", "request-withdrawal"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `amount`: Payment, refund, or withdrawal amount."
+          },
+          "response": []
+        },
+        {
+          "name": "my-payouts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/payment/my-payouts?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["payment", "my-payouts"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "disabled": true,
+                  "description": "Optional status filter, for example pending, preparing, delivered, or completed depending on this module."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns authenticated user payout records with pagination and optional status filter.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `status`: Optional status filter, for example pending, preparing, delivered, or completed depending on this module. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "my-earnings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/payment/my-earnings?period=week",
+              "host": ["{{url}}"],
+              "path": ["payment", "my-earnings"],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "week",
+                  "description": "Earnings summary period. Accepted examples: today, week, month."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `period`: Earnings summary period. Accepted examples: today, week, month."
+          },
+          "response": []
+        },
+        {
+          "name": "my-transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/payment/my-transactions?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["payment", "my-transactions"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{merchant_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns merchant transaction records with pagination.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page."
+          },
+          "response": []
+        },
+        {
+          "name": "stripe-webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "stripe-signature",
+                "value": "{{stripe_signature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/stripe/webhook",
+              "host": ["{{url}}"],
+              "path": ["stripe", "webhook"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"evt_test_webhook\",\n  \"object\": \"event\",\n  \"type\": \"payment_intent.succeeded\",\n  \"data\": {\n    \"object\": {\n      \"id\": \"pi_test\",\n      \"metadata\": {\n        \"paymentId\": \"{{paymentId}}\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "## Body Fields\n- `id`: Stripe event ID.\n- `object`: Stripe object type, usually event for webhook payloads.\n- `type`: Stripe event type, for example payment_intent.succeeded.\n- `data`: Stripe event data wrapper. This sample is only for local structure reference.\n- `data.object`: Stripe object type, usually event for webhook payloads.\n- `data.object.id`: Stripe event ID.\n- `data.object.metadata`: Sample request field.\n- `data.object.metadata.paymentId`: MongoDB ObjectId of the payment document."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Manage",
+      "item": [
+        {
+          "name": "add-terms-conditions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/manage/add-terms-conditions",
+              "host": ["{{url}}"],
+              "path": ["manage", "add-terms-conditions"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<h1>Terms and Conditions</h1><p>Your terms here.</p>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `description`: Full Terms and Conditions content, usually HTML or markdown."
+          },
+          "response": []
+        },
+        {
+          "name": "get-terms-conditions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/get-terms-conditions",
+              "host": ["{{url}}"],
+              "path": ["manage", "get-terms-conditions"]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-terms-conditions",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/delete-terms-conditions?id={{contentId}}",
+              "host": ["{{url}}"],
+              "path": ["manage", "delete-terms-conditions"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "{{contentId}}",
+                  "description": "MongoDB ObjectId of the content document to delete."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `id`: MongoDB ObjectId of the content document to delete."
+          },
+          "response": []
+        },
+        {
+          "name": "add-privacy-policy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/manage/add-privacy-policy",
+              "host": ["{{url}}"],
+              "path": ["manage", "add-privacy-policy"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<h1>Privacy Policy</h1><p>We respect your data.</p>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `description`: Full Privacy Policy content, usually HTML or markdown."
+          },
+          "response": []
+        },
+        {
+          "name": "get-privacy-policy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/get-privacy-policy",
+              "host": ["{{url}}"],
+              "path": ["manage", "get-privacy-policy"]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-privacy-policy",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/delete-privacy-policy?id={{contentId}}",
+              "host": ["{{url}}"],
+              "path": ["manage", "delete-privacy-policy"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "{{contentId}}",
+                  "description": "MongoDB ObjectId of the content document to delete."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `id`: MongoDB ObjectId of the content document to delete."
+          },
+          "response": []
+        },
+        {
+          "name": "add-about-us",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/manage/add-about-us",
+              "host": ["{{url}}"],
+              "path": ["manage", "add-about-us"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<h1>About Us</h1><p>HappyPhoto platform information.</p>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `description`: Full About Us content, usually HTML or markdown."
+          },
+          "response": []
+        },
+        {
+          "name": "get-about-us",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/get-about-us",
+              "host": ["{{url}}"],
+              "path": ["manage", "get-about-us"]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-about-us",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/delete-about-us?id={{contentId}}",
+              "host": ["{{url}}"],
+              "path": ["manage", "delete-about-us"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "{{contentId}}",
+                  "description": "MongoDB ObjectId of the content document to delete."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `id`: MongoDB ObjectId of the content document to delete."
+          },
+          "response": []
+        },
+        {
+          "name": "add-faq",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/manage/add-faq",
+              "host": ["{{url}}"],
+              "path": ["manage", "add-faq"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<h2>FAQ</h2><p>Frequently asked questions.</p>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `description`: FAQ content, usually HTML or markdown."
+          },
+          "response": []
+        },
+        {
+          "name": "get-faq",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/get-faq",
+              "host": ["{{url}}"],
+              "path": ["manage", "get-faq"]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-faq",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/delete-faq?id={{contentId}}",
+              "host": ["{{url}}"],
+              "path": ["manage", "delete-faq"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "{{contentId}}",
+                  "description": "MongoDB ObjectId of the content document to delete."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `id`: MongoDB ObjectId of the content document to delete."
+          },
+          "response": []
+        },
+        {
+          "name": "add-contact-us",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/manage/add-contact-us",
+              "host": ["{{url}}"],
+              "path": ["manage", "add-contact-us"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<h1>Contact Us</h1><p>Email support@example.com</p>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `description`: Contact Us content, usually HTML or markdown."
+          },
+          "response": []
+        },
+        {
+          "name": "get-contact-us",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/get-contact-us",
+              "host": ["{{url}}"],
+              "path": ["manage", "get-contact-us"]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-contact-us",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/manage/delete-contact-us?id={{contentId}}",
+              "host": ["{{url}}"],
+              "path": ["manage", "delete-contact-us"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "{{contentId}}",
+                  "description": "MongoDB ObjectId of the content document to delete."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `id`: MongoDB ObjectId of the content document to delete."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notification",
+      "item": [
+        {
+          "name": "get-notification",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/get-notification?notificationId={{notificationId}}",
+              "host": ["{{url}}"],
+              "path": ["notification", "get-notification"],
+              "query": [
+                {
+                  "key": "notificationId",
+                  "value": "{{notificationId}}",
+                  "description": "MongoDB ObjectId of the notification."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `notificationId`: MongoDB ObjectId of the notification."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-notifications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/get-all-notifications?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["notification", "get-all-notifications"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "order",
+                  "disabled": true,
+                  "description": "Optional free-text search across configured searchable fields."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns notifications with pagination and optional text search.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `searchTerm`: Optional free-text search across configured searchable fields. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "update-as-mark-unread",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/notification/update-as-mark-unread",
+              "host": ["{{url}}"],
+              "path": ["notification", "update-as-mark-unread"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isRead\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `isRead`: true marks notifications read; false marks them unread."
+          },
+          "response": []
+        },
+        {
+          "name": "delete-notification",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/notification/delete-notification",
+              "host": ["{{url}}"],
+              "path": ["notification", "delete-notification"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notificationId\": \"{{notificationId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `notificationId`: MongoDB ObjectId of the notification."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "post-chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/chat/post-chat",
+              "host": ["{{url}}"],
+              "path": ["chat", "post-chat"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receiverId\": \"{{receiverId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `receiverId`: MongoDB ObjectId of the chat receiver."
+          },
+          "response": []
+        },
+        {
+          "name": "get-chat-messages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/chat/get-chat-messages?chatId={{chatId}}&page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["chat", "get-chat-messages"],
+              "query": [
+                {
+                  "key": "chatId",
+                  "value": "{{chatId}}",
+                  "description": "MongoDB ObjectId of the chat conversation."
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns paginated messages for one chat conversation.\n\n- `chatId`: MongoDB ObjectId of the chat conversation.\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-chats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/chat/get-all-chats",
+              "host": ["{{url}}"],
+              "path": ["chat", "get-all-chats"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-message-as-seen",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/chat/update-message-as-seen",
+              "host": ["{{url}}"],
+              "path": ["chat", "update-message-as-seen"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatId\": \"{{chatId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `chatId`: MongoDB ObjectId of the chat conversation."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "item": [
+        {
+          "name": "post-feedback",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/feedback/post-feedback",
+              "host": ["{{url}}"],
+              "path": ["feedback", "post-feedback"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"Great service, the driver arrived right on time!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `feedback`: Feedback or support message text."
+          },
+          "response": []
+        },
+        {
+          "name": "get-feedback",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/feedback/get-feedback?feedbackId={{feedbackId}}",
+              "host": ["{{url}}"],
+              "path": ["feedback", "get-feedback"],
+              "query": [
+                {
+                  "key": "feedbackId",
+                  "value": "{{feedbackId}}",
+                  "description": "MongoDB ObjectId of the feedback document."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `feedbackId`: MongoDB ObjectId of the feedback document."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-feedbacks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/feedback/get-all-feedbacks?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["feedback", "get-all-feedbacks"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "service",
+                  "disabled": true,
+                  "description": "Optional free-text search across configured searchable fields."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns feedback list with pagination and optional search.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `searchTerm`: Optional free-text search across configured searchable fields. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "update-feedback-with-reply",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/feedback/update-feedback-with-reply",
+              "host": ["{{url}}"],
+              "path": ["feedback", "update-feedback-with-reply"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedbackId\": \"{{feedbackId}}\",\n  \"reply\": \"Thank you for letting us know. We will look into this immediately.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `feedbackId`: MongoDB ObjectId of the feedback document.\n- `reply`: Admin reply text for the feedback."
+          },
+          "response": []
+        },
+        {
+          "name": "delete-feedback",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/feedback/delete-feedback",
+              "host": ["{{url}}"],
+              "path": ["feedback", "delete-feedback"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedbackId\": \"{{feedbackId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `feedbackId`: MongoDB ObjectId of the feedback document."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Review",
+      "item": [
+        {
+          "name": "post-review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/review/post-review",
+              "host": ["{{url}}"],
+              "path": ["review", "post-review"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"merchantId\": \"{{merchantId}}\",\n  \"driverId\": \"{{driverId}}\",\n  \"reviewType\": \"merchant\",\n  \"rating\": 5,\n  \"review\": \"Excellent service and quick preparation.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `orderId`: MongoDB ObjectId of the order.\n- `merchantId`: MongoDB ObjectId of the merchant profile.\n- `driverId`: MongoDB ObjectId of the driver profile.\n- `reviewType`: Review target type. Use merchant or driver.\n- `rating`: Numeric rating, usually 1 to 5.\n- `review`: Review text shown with the rating."
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/review/get-all-reviews?page=1&limit=10",
+              "host": ["{{url}}"],
+              "path": ["review", "get-all-reviews"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Use 1 for the first page."
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "key": "rating",
+                  "value": "5",
+                  "disabled": true,
+                  "description": "Optional numeric review rating filter, usually 1 to 5."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\nReturns review list with pagination and optional rating filter.\n\n- `page`: Page number for paginated results. Use 1 for the first page.\n- `limit`: Maximum number of records to return per page.\n- `rating`: Optional numeric review rating filter, usually 1 to 5. Optional sample; enable it when needed."
+          },
+          "response": []
+        },
+        {
+          "name": "get-review",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/review/get-review?reviewId={{reviewId}}",
+              "host": ["{{url}}"],
+              "path": ["review", "get-review"],
+              "query": [
+                {
+                  "key": "reviewId",
+                  "value": "{{reviewId}}",
+                  "description": "MongoDB ObjectId of the review document."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `reviewId`: MongoDB ObjectId of the review document."
+          },
+          "response": []
+        },
+        {
+          "name": "update-review",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/review/update-review",
+              "host": ["{{url}}"],
+              "path": ["review", "update-review"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reviewId\": \"{{reviewId}}\",\n  \"rating\": 4,\n  \"review\": \"Good service, but slightly delayed.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Body Fields\n- `reviewId`: MongoDB ObjectId of the review document.\n- `rating`: Numeric rating, usually 1 to 5.\n- `review`: Review text shown with the rating."
+          },
+          "response": []
+        },
+        {
+          "name": "delete-review",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/review/delete-review?reviewId={{reviewId}}",
+              "host": ["{{url}}"],
+              "path": ["review", "delete-review"],
+              "query": [
+                {
+                  "key": "reviewId",
+                  "value": "{{reviewId}}",
+                  "description": "MongoDB ObjectId of the review document."
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "## Query Parameters\n- `reviewId`: MongoDB ObjectId of the review document."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": "http://localhost:8001",
+      "type": "string"
+    },
+    {
+      "key": "url2",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "merchant_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "driver_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "property_host_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "authId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "adminId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "merchantId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "driverId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "receiverId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "productId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "propertyId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "propertyCode",
+      "value": "STAY123",
+      "type": "string"
+    },
+    {
+      "key": "orderId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "paymentId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "payoutId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "requestId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "feedbackId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "reviewId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "chatId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "notificationId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "contentId",
+      "value": "507f1f77bcf86cd799439011",
+      "type": "string"
+    },
+    {
+      "key": "stripe_signature",
+      "value": "t=timestamp,v1=signature",
+      "type": "string"
+    },
+    {
+      "key": "sample_file",
+      "value": "C:/path/to/sample-image.png",
+      "type": "string"
+    }
+  ]
+}

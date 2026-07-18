@@ -1,0 +1,3542 @@
+[
+  {
+    "route": "/admin/profile",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/profile",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/profile",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/edit-profile",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/edit-profile",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/edit-profile",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/delete-account",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/delete-account",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/delete-account",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-users",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-users",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-users",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/block-user",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/block-user",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/block-user",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-driver",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-driver",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-driver",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/reject-driver",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/reject-driver",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/reject-driver",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-merchant",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-merchant",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-merchant",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-property-host",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-property-host",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-property-host",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-orders",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-orders",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-orders",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-delivery-requests",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-delivery-requests",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-delivery-requests",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/force-approve-request",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/force-approve-request",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/force-approve-request",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-stores",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-stores",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-stores",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-properties",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-properties",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-properties",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/flag-property",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/flag-property",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/flag-property",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-payments",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-payments",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/get-all-payments",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-payout",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-payout",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/approve-payout",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/reject-payout",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/reject-payout",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/reject-payout",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/dashboard",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/dashboard",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/admin/dashboard",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/register",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/register",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/register",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/login",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/login",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/login",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/activate-account",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/activate-account",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/activate-account",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/activation-code-resend",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/activation-code-resend",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/activation-code-resend",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/forgot-password",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/forgot-password",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/forgot-password",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/forget-pass-otp-verify",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/forget-pass-otp-verify",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/forget-pass-otp-verify",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/reset-password",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/reset-password",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/reset-password",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/change-password",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/change-password",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/auth/change-password",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/get-cart",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/get-cart",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/get-cart",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/add-item",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/add-item",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/add-item",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/update-item",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/update-item",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/update-item",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/remove-item",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/remove-item",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/remove-item",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/clear-cart",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/clear-cart",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/clear-cart",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/set-property-code",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/set-property-code",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/cart/set-property-code",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/post-chat",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/post-chat",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/post-chat",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/get-chat-messages",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/get-chat-messages",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/get-chat-messages",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/get-all-chats",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/get-all-chats",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/get-all-chats",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/update-message-as-seen",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/update-message-as-seen",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/chat/update-message-as-seen",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/post-feedback",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/post-feedback",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/post-feedback",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/get-feedback",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/get-feedback",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/get-feedback",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/get-all-feedbacks",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/get-all-feedbacks",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/get-all-feedbacks",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/update-feedback-with-reply",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/update-feedback-with-reply",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/update-feedback-with-reply",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/delete-feedback",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/delete-feedback",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/feedback/delete-feedback",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-terms-conditions",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-terms-conditions",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-terms-conditions",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-terms-conditions",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-terms-conditions",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-terms-conditions",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-terms-conditions",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-terms-conditions",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-terms-conditions",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-privacy-policy",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-privacy-policy",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-privacy-policy",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-privacy-policy",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-privacy-policy",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-privacy-policy",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-privacy-policy",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-privacy-policy",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-privacy-policy",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-about-us",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-about-us",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-about-us",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-about-us",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-about-us",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-about-us",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-about-us",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-about-us",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-about-us",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-faq",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-faq",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-faq",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-faq",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-faq",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-faq",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-faq",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-faq",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-faq",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-contact-us",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-contact-us",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/add-contact-us",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-contact-us",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-contact-us",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/get-contact-us",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-contact-us",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-contact-us",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/manage/delete-contact-us",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/get-notification",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/get-notification",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/get-notification",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/get-all-notifications",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/get-all-notifications",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/get-all-notifications",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/update-as-mark-unread",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/update-as-mark-unread",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/update-as-mark-unread",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/delete-notification",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/delete-notification",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/notification/delete-notification",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/place-order",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/place-order",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/place-order",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/get-order",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/get-order",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/get-order",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/get-my-orders",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/get-my-orders",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/get-my-orders",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/track",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/track",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/track",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/accept-order",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/accept-order",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/accept-order",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/update-status",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/update-status",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/update-status",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/active-orders",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/active-orders",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/active-orders",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/pending-requests",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/pending-requests",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/pending-requests",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/assign-driver",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/assign-driver",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/assign-driver",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/accept-delivery",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/accept-delivery",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/accept-delivery",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/decline-delivery",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/decline-delivery",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/decline-delivery",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/picked-up",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/picked-up",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/picked-up",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/out-for-delivery",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/out-for-delivery",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/out-for-delivery",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/deliver",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/deliver",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/deliver",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/cancel-order",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/cancel-order",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/order/cancel-order",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/create-intent",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/create-intent",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/create-intent",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/get-payment",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/get-payment",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/get-payment",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/refund",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/refund",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/refund",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/create-connect-account",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/create-connect-account",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/create-connect-account",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/connect-status",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/connect-status",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/connect-status",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/request-withdrawal",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/request-withdrawal",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/request-withdrawal",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-payouts",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-payouts",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-payouts",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-earnings",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-earnings",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-earnings",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-transactions",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-transactions",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/payment/my-transactions",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/post-product",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/post-product",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/post-product",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/get-product",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/get-product",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/get-product",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/get-all-products",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/get-all-products",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/get-all-products",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/update-product",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/update-product",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/update-product",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/delete-product",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/delete-product",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/product/delete-product",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/add-property",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/add-property",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/add-property",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/get-properties",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/get-properties",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/get-properties",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/get-property",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/get-property",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/get-property",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/update-property",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/update-property",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/update-property",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/delete-property",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/delete-property",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/delete-property",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/resolve-code",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/resolve-code",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/resolve-code",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/update-delivery-rules",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/update-delivery-rules",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/update-delivery-rules",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/dashboard-stats",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/dashboard-stats",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/dashboard-stats",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/approve-request",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/approve-request",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/approve-request",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/reject-request",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/reject-request",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/reject-request",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/pending-requests",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/pending-requests",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/pending-requests",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/scheduled-requests",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/scheduled-requests",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/scheduled-requests",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/delivered-requests",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/delivered-requests",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/property/delivered-requests",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/post-review",
+    "method": "POST",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/post-review",
+    "method": "POST",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/post-review",
+    "method": "POST",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/get-all-reviews",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/get-all-reviews",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/get-all-reviews",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/get-review",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/get-review",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/get-review",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/update-review",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/update-review",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/update-review",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/delete-review",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/delete-review",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/review/delete-review",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/profile",
+    "method": "GET",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/profile",
+    "method": "GET",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/profile",
+    "method": "GET",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/edit-profile",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/edit-profile",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/edit-profile",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/delete-account",
+    "method": "DELETE",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/delete-account",
+    "method": "DELETE",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/delete-account",
+    "method": "DELETE",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-driver-information",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-driver-information",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-driver-information",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-business-information",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-business-information",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-business-information",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-store-location",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-store-location",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-store-location",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-store-profile",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-store-profile",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-store-profile",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-documents",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-documents",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-merchant-documents",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-store-settings",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-store-settings",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/update-store-settings",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/submit-driver-application",
+    "method": "PATCH",
+    "tier": "Tier 1",
+    "testCase": "Positive Request",
+    "inputStrategy": "Empty/Basic",
+    "expected": "2xx or 401",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/submit-driver-application",
+    "method": "PATCH",
+    "tier": "Tier 2",
+    "testCase": "Mutation Fuzzing",
+    "inputStrategy": "Type Swaps",
+    "expected": "400",
+    "actual": 0,
+    "status": "pass"
+  },
+  {
+    "route": "/user/submit-driver-application",
+    "method": "PATCH",
+    "tier": "Tier 3",
+    "testCase": "Anonymous Access",
+    "inputStrategy": "No Auth Header",
+    "expected": "401/403",
+    "actual": 0,
+    "status": "pass"
+  }
+]
