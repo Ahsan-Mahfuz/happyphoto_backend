@@ -12,6 +12,7 @@ const createPaymentIntent = async (
   currency: string,
   metadata: Record<string, string>,
   captureMethod: "automatic" | "manual" = "automatic",
+  customerId?: string,
 ): Promise<Stripe.PaymentIntent> => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -19,6 +20,10 @@ const createPaymentIntent = async (
       currency,
       metadata,
       capture_method: captureMethod,
+      // Passing the customer (without forcing setup_future_usage) lets
+      // Stripe's Payment Sheet show their saved cards and offer its own
+      // "save this card" checkbox for next time.
+      ...(customerId && { customer: customerId }),
     });
     return paymentIntent;
   } catch (error: any) {
@@ -185,6 +190,111 @@ const getAccountStatus = async (
   }
 };
 
+// --- Payer-side Customer / saved payment methods ---
+
+const createCustomer = async (
+  email: string,
+  name?: string,
+): Promise<Stripe.Customer> => {
+  try {
+    return await stripe.customers.create({ email, name });
+  } catch (error: any) {
+    throw new ApiError(
+      status.BAD_REQUEST,
+      `Stripe customer error: ${error.message}`,
+    );
+  }
+};
+
+const createEphemeralKey = async (
+  customerId: string,
+): Promise<Stripe.EphemeralKey> => {
+  try {
+    return await stripe.ephemeralKeys.create({ customer: customerId });
+  } catch (error: any) {
+    throw new ApiError(
+      status.BAD_REQUEST,
+      `Stripe ephemeral key error: ${error.message}`,
+    );
+  }
+};
+
+const createSetupIntent = async (
+  customerId: string,
+): Promise<Stripe.SetupIntent> => {
+  try {
+    return await stripe.setupIntents.create({
+      customer: customerId,
+      automatic_payment_methods: { enabled: true },
+    });
+  } catch (error: any) {
+    throw new ApiError(
+      status.BAD_REQUEST,
+      `Stripe setup intent error: ${error.message}`,
+    );
+  }
+};
+
+const listPaymentMethods = async (
+  customerId: string,
+): Promise<Stripe.PaymentMethod[]> => {
+  try {
+    const [methods, customer] = await Promise.all([
+      stripe.paymentMethods.list({ customer: customerId, type: "card" }),
+      stripe.customers.retrieve(customerId),
+    ]);
+
+    let defaultId: string | undefined;
+    if (!customer.deleted) {
+      const activeCustomer = customer as Stripe.Customer;
+      const defaultMethod =
+        activeCustomer.invoice_settings?.default_payment_method;
+      defaultId =
+        typeof defaultMethod === "string" ? defaultMethod : defaultMethod?.id;
+    }
+
+    return methods.data.map((m) => ({
+      ...m,
+      metadata: { ...m.metadata, isDefault: String(m.id === defaultId) },
+    })) as Stripe.PaymentMethod[];
+  } catch (error: any) {
+    throw new ApiError(
+      status.BAD_REQUEST,
+      `Stripe list payment methods error: ${error.message}`,
+    );
+  }
+};
+
+const detachPaymentMethod = async (
+  paymentMethodId: string,
+): Promise<Stripe.PaymentMethod> => {
+  try {
+    return await stripe.paymentMethods.detach(paymentMethodId);
+  } catch (error: any) {
+    throw new ApiError(
+      status.BAD_REQUEST,
+      `Stripe detach payment method error: ${error.message}`,
+    );
+  }
+};
+
+const setDefaultPaymentMethod = async (
+  customerId: string,
+  paymentMethodId: string,
+): Promise<Stripe.Customer> => {
+  try {
+    const customer = await stripe.customers.update(customerId, {
+      invoice_settings: { default_payment_method: paymentMethodId },
+    });
+    return customer;
+  } catch (error: any) {
+    throw new ApiError(
+      status.BAD_REQUEST,
+      `Stripe set default payment method error: ${error.message}`,
+    );
+  }
+};
+
 // Webhook signature verification
 const constructWebhookEvent = (
   body: Buffer,
@@ -204,6 +314,12 @@ const StripeService = {
   createTransfer,
   createTransferReversal,
   getAccountStatus,
+  createCustomer,
+  createEphemeralKey,
+  createSetupIntent,
+  listPaymentMethods,
+  detachPaymentMethod,
+  setDefaultPaymentMethod,
   constructWebhookEvent,
 };
 

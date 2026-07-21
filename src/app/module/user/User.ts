@@ -107,12 +107,27 @@ const UserSchema = new Schema<IUser>(
       type: Number,
       default: 0,
     },
+    // Driver online/offline session tracking — isOnline flips via socket
+    // connect/disconnect or the manual toggle; onlineSince/totalOnlineSeconds
+    // accumulate actual online duration (see socket/socket.controller.ts).
+    onlineSince: {
+      type: Date,
+    },
+    totalOnlineSeconds: {
+      type: Number,
+      default: 0,
+    },
     stripeConnectAccountId: {
       type: String,
     },
     stripeConnectOnboarded: {
       type: Boolean,
       default: false,
+    },
+    // Payer-side Stripe Customer — separate from stripeConnectAccountId
+    // (that one is for receiving payouts as a driver/merchant/host).
+    stripeCustomerId: {
+      type: String,
     },
 
     // merchant specific fields

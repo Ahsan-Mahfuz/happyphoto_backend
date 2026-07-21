@@ -44,6 +44,12 @@ const createIntent = async (userData: any, payload: Record<string, any>) => {
   // Amount in cents
   const amountInCents = Math.round(order.total * 100);
 
+  // Attach the payer's Stripe Customer so the Payment Sheet can offer their
+  // saved cards (and offer to save this one) instead of always being a
+  // blank one-off card entry form.
+  const { customerId } = await ensureStripeCustomer(userData);
+  const ephemeralKey = await StripeService.createEphemeralKey(customerId);
+
   const paymentIntent = await StripeService.createPaymentIntent(
     amountInCents,
     payload.currency || "usd",
@@ -53,6 +59,7 @@ const createIntent = async (userData: any, payload: Record<string, any>) => {
       userId: userData.userId,
     },
     captureMethod,
+    customerId,
   );
 
   // Create payment record
@@ -72,6 +79,8 @@ const createIntent = async (userData: any, payload: Record<string, any>) => {
     clientSecret: paymentIntent.client_secret,
     paymentIntentId: paymentIntent.id,
     paymentId: payment._id,
+    customerId,
+    ephemeralKeySecret: ephemeralKey.secret,
   };
 };
 
@@ -132,6 +141,102 @@ const refund = async (userData: any, payload: Record<string, any>) => {
   await payment.save();
 
   return payment;
+};
+
+// --- Payer-side saved payment methods (Stripe Customer + SetupIntent) ---
+
+const ensureStripeCustomer = async (userData: any) => {
+  const user = await User.findById(userData.userId);
+  if (!user) {
+    throw new ApiError(status.NOT_FOUND, "User not found");
+  }
+
+  if (user.stripeCustomerId) {
+    return { user, customerId: user.stripeCustomerId };
+  }
+
+  const customer = await StripeService.createCustomer(user.email, user.name);
+  user.stripeCustomerId = customer.id;
+  await user.save();
+
+  return { user, customerId: customer.id };
+};
+
+const createSetupIntent = async (userData: any) => {
+  const { customerId } = await ensureStripeCustomer(userData);
+
+  const [setupIntent, ephemeralKey] = await Promise.all([
+    StripeService.createSetupIntent(customerId),
+    StripeService.createEphemeralKey(customerId),
+  ]);
+
+  return {
+    clientSecret: setupIntent.client_secret,
+    customerId,
+    ephemeralKeySecret: ephemeralKey.secret,
+  };
+};
+
+const getPaymentMethods = async (userData: any) => {
+  const user = await User.findById(userData.userId).lean();
+  if (!user) {
+    throw new ApiError(status.NOT_FOUND, "User not found");
+  }
+  if (!user.stripeCustomerId) {
+    return [];
+  }
+  return StripeService.listPaymentMethods(user.stripeCustomerId);
+};
+
+const deletePaymentMethod = async (
+  userData: any,
+  payload: Record<string, any>,
+) => {
+  validateFields(payload, ["paymentMethodId"]);
+
+  const user = await User.findById(userData.userId).lean();
+  if (!user?.stripeCustomerId) {
+    throw new ApiError(status.NOT_FOUND, "No saved payment methods");
+  }
+
+  // Ownership check — only ever detach a method belonging to this user's
+  // own Stripe customer.
+  const methods = await StripeService.listPaymentMethods(
+    user.stripeCustomerId,
+  );
+  const owned = methods.some((m) => m.id === payload.paymentMethodId);
+  if (!owned) {
+    throw new ApiError(status.FORBIDDEN, "Not your payment method");
+  }
+
+  return StripeService.detachPaymentMethod(payload.paymentMethodId);
+};
+
+const setDefaultPaymentMethod = async (
+  userData: any,
+  payload: Record<string, any>,
+) => {
+  validateFields(payload, ["paymentMethodId"]);
+
+  const user = await User.findById(userData.userId).lean();
+  if (!user?.stripeCustomerId) {
+    throw new ApiError(status.NOT_FOUND, "No saved payment methods");
+  }
+
+  const methods = await StripeService.listPaymentMethods(
+    user.stripeCustomerId,
+  );
+  const owned = methods.some((m) => m.id === payload.paymentMethodId);
+  if (!owned) {
+    throw new ApiError(status.FORBIDDEN, "Not your payment method");
+  }
+
+  await StripeService.setDefaultPaymentMethod(
+    user.stripeCustomerId,
+    payload.paymentMethodId,
+  );
+
+  return StripeService.listPaymentMethods(user.stripeCustomerId);
 };
 
 // --- Stripe Connect Methods ---
@@ -273,9 +378,18 @@ const processOrderPayouts = async (orderId: string) => {
 
 const getMyEarnings = async (userData: any, query: Record<string, any>) => {
   const period = query.period || "week";
-  const field = userData.role === "MERCHANT" ? "merchantId" : "driverId";
+  const field =
+    userData.role === "MERCHANT"
+      ? "merchantId"
+      : userData.role === "PROPERTY_HOST"
+        ? "propertyHostId"
+        : "driverId";
   const earningsField =
-    userData.role === "MERCHANT" ? "merchantNetEarnings" : "driverPayout";
+    userData.role === "MERCHANT"
+      ? "merchantNetEarnings"
+      : userData.role === "PROPERTY_HOST"
+        ? "propertyHostPayout"
+        : "driverPayout";
 
   let dateFilter: Record<string, any> = {};
   const now = new Date();
@@ -322,22 +436,55 @@ const getMyEarnings = async (userData: any, query: Record<string, any>) => {
   const total = result[0]?.total || 0;
   const orderCount = result[0]?.orderCount || 0;
 
+  let onlineHours: number | undefined;
+  if (userData.role === "DRIVER") {
+    const driver = await User.findById(userData.userId)
+      .select("totalOnlineSeconds onlineSince")
+      .lean();
+    let seconds = driver?.totalOnlineSeconds || 0;
+    if (driver?.onlineSince) {
+      // Currently online — include the still-running session.
+      seconds += Math.max(
+        0,
+        Math.round((Date.now() - new Date(driver.onlineSince).getTime()) / 1000),
+      );
+    }
+    onlineHours = Math.round((seconds / 3600) * 10) / 10;
+  }
+
   return {
     total: Math.round(total * 100) / 100,
     perOrder: orderCount > 0 ? Math.round((total / orderCount) * 100) / 100 : 0,
     orderCount,
+    ...(onlineHours !== undefined && { onlineHours }),
   };
 };
 
 const getMyTransactions = async (userData: any, query: QueryParams) => {
+  const isPropertyHost = userData.role === "PROPERTY_HOST";
+  const isDriver = userData.role === "DRIVER";
+  const filterField = isPropertyHost
+    ? "propertyHostId"
+    : isDriver
+      ? "driverId"
+      : "merchantId";
+  const payoutField = isPropertyHost
+    ? "propertyHostPayout"
+    : isDriver
+      ? "driverPayout"
+      : "merchantNetEarnings";
+  const selectFields = isPropertyHost
+    ? "orderId total propertyHostPayout createdAt"
+    : isDriver
+      ? "orderId total driverPayout createdAt"
+      : "orderId subtotal platformCommission merchantNetEarnings total deliveryFee createdAt";
+
   const orderQuery = new QueryBuilder(
     Order.find({
-      merchantId: userData.userId,
+      [filterField]: userData.userId,
       status: "delivered",
     })
-      .select(
-        "orderId subtotal platformCommission merchantNetEarnings total deliveryFee createdAt",
-      )
+      .select(selectFields)
       .lean(),
     query,
   )
@@ -345,10 +492,23 @@ const getMyTransactions = async (userData: any, query: QueryParams) => {
     .paginate()
     .fields();
 
-  const [transactions, meta] = await Promise.all([
+  const [orders, meta] = await Promise.all([
     orderQuery.modelQuery,
     orderQuery.countTotal(),
   ]);
+
+  // Shaped to match the driver/host earnings screens' PayoutModel — one
+  // "payout" entry per delivered order (this app auto-transfers per order on
+  // delivery, see processOrderPayouts, so each is already paid).
+  const transactions = (orders as any[]).map((order) => ({
+    _id: order._id,
+    orderId: order.orderId,
+    type: "Order Payout",
+    status: "paid",
+    amount: order[payoutField] || 0,
+    orderCount: 1,
+    createdAt: order.createdAt,
+  }));
 
   return { meta, transactions };
 };
@@ -357,6 +517,10 @@ const PaymentService = {
   createIntent,
   getPayment,
   refund,
+  createSetupIntent,
+  getPaymentMethods,
+  deletePaymentMethod,
+  setDefaultPaymentMethod,
   createConnectAccount,
   getConnectStatus,
   processOrderPayouts,

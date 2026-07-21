@@ -38,6 +38,58 @@ const refundPayment = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createSetupIntent = catchAsync(async (req: Request, res: Response) => {
+  if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
+  const result = await PaymentService.createSetupIntent(req.user);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Setup intent created",
+    data: result,
+  });
+});
+
+const getPaymentMethods = catchAsync(async (req: Request, res: Response) => {
+  if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
+  const result = await PaymentService.getPaymentMethods(req.user);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Payment methods retrieved",
+    data: result,
+  });
+});
+
+const deletePaymentMethod = catchAsync(async (req: Request, res: Response) => {
+  if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
+  const result = await PaymentService.deletePaymentMethod(
+    req.user,
+    req.body,
+  );
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Payment method removed",
+    data: result,
+  });
+});
+
+const setDefaultPaymentMethod = catchAsync(
+  async (req: Request, res: Response) => {
+    if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
+    const result = await PaymentService.setDefaultPaymentMethod(
+      req.user,
+      req.body,
+    );
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Default payment method updated",
+      data: result,
+    });
+  },
+);
+
 const createConnectAccount = catchAsync(async (req: Request, res: Response) => {
   if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
   const result = await PaymentService.createConnectAccount(req.user);
@@ -90,6 +142,10 @@ const PaymentController = {
   createIntent,
   getPayment,
   refundPayment,
+  createSetupIntent,
+  getPaymentMethods,
+  deletePaymentMethod,
+  setDefaultPaymentMethod,
   createConnectAccount,
   getConnectStatus,
   getMyEarnings,

@@ -80,6 +80,21 @@ const getActiveOrders = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getDriverHistory = catchAsync(async (req: Request, res: Response) => {
+  if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
+  const result = await OrderService.getDriverHistory(
+    req.user,
+    req.query as QueryParams,
+  );
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Driver history retrieved",
+    data: result.deliveries,
+    meta: result.meta,
+  });
+});
+
 const getPendingDeliveryRequests = catchAsync(
   async (req: Request, res: Response) => {
     if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
@@ -181,6 +196,7 @@ const OrderController = {
   acceptOrder,
   updateOrderStatus,
   getActiveOrders,
+  getDriverHistory,
   getPendingDeliveryRequests,
   trackOrder,
   assignDriver,

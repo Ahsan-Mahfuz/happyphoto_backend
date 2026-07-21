@@ -38,6 +38,11 @@ router
     OrderController.getActiveOrders,
   )
   .get(
+    "/driver-history",
+    auth(config.auth_level.driver),
+    OrderController.getDriverHistory,
+  )
+  .get(
     "/pending-requests",
     auth(config.auth_level.driver),
     OrderController.getPendingDeliveryRequests,

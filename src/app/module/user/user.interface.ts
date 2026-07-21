@@ -45,8 +45,11 @@ export interface IUser extends Document {
   averageRating?: number;
   totalReviews?: number;
   totalDeliveries?: number;
+  onlineSince?: Date;
+  totalOnlineSeconds?: number;
   stripeConnectAccountId?: string;
   stripeConnectOnboarded?: boolean;
+  stripeCustomerId?: string;
 
   // merchant specific fields
   storeName?: string;

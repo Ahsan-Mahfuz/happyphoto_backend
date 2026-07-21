@@ -22,6 +22,27 @@ router
     auth(config.auth_level.admin),
     PaymentController.refundPayment,
   )
+  // Saved payment methods (payer-side Stripe Customer)
+  .post(
+    "/create-setup-intent",
+    auth(config.auth_level.all),
+    PaymentController.createSetupIntent,
+  )
+  .get(
+    "/payment-methods",
+    auth(config.auth_level.all),
+    PaymentController.getPaymentMethods,
+  )
+  .delete(
+    "/payment-methods",
+    auth(config.auth_level.all),
+    PaymentController.deletePaymentMethod,
+  )
+  .patch(
+    "/payment-methods/default",
+    auth(config.auth_level.all),
+    PaymentController.setDefaultPaymentMethod,
+  )
   // Connect
   .post(
     "/create-connect-account",
@@ -42,7 +63,7 @@ router
   )
   .get(
     "/my-transactions",
-    auth(config.auth_level.merchant),
+    auth(config.auth_level.all),
     PaymentController.getMyTransactions,
   );
 

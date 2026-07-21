@@ -44,11 +44,30 @@ const updateOnlineStatus = socketCatchAsync(
     validateSocketFields(socket, payload, ["userId", "isOnline"]);
     const { userId, isOnline } = payload;
 
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { isOnline },
-      { returnDocument: "after" },
-    );
+    const existingUser = await User.findById(userId);
+    if (!existingUser) return;
+
+    const update: Record<string, any> = { isOnline };
+
+    if (isOnline && !existingUser.isOnline) {
+      // Was offline, going online — start a new session.
+      update.onlineSince = new Date();
+    } else if (!isOnline && existingUser.isOnline) {
+      // Was online, going offline — accumulate this session's duration.
+      const since = existingUser.onlineSince
+        ? new Date(existingUser.onlineSince)
+        : new Date();
+      const seconds = Math.max(
+        0,
+        Math.round((Date.now() - since.getTime()) / 1000),
+      );
+      update.totalOnlineSeconds = (existingUser.totalOnlineSeconds || 0) + seconds;
+      update.onlineSince = null;
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(userId, update, {
+      returnDocument: "after",
+    });
 
     socket.emit(
       EnumSocketEvent.ONLINE_STATUS,

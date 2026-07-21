@@ -35,6 +35,7 @@ export interface IOrder extends Document {
   total: number;
   platformCommission?: number;
   driverPayout?: number;
+  propertyHostPayout?: number;
   merchantNetEarnings?: number;
   deliveryAddress?: string;
   deliveryCoordinates?: {

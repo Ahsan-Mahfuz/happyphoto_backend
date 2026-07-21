@@ -102,6 +102,9 @@ const OrderSchema = new Schema<IOrder>(
     driverPayout: {
       type: Number,
     },
+    propertyHostPayout: {
+      type: Number,
+    },
     merchantNetEarnings: {
       type: Number,
     },

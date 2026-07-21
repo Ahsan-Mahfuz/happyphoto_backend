@@ -13,12 +13,14 @@ import { PaymentService } from "../payment/payment.service";
 import Payment from "../payment/Payment";
 import { StripeService } from "../payment/stripe.service";
 import User from "../user/User";
+import Review from "../review/Review";
 import { Request } from "express";
 
 const DELIVERY_FEE = 5;
 const SERVICE_FEE = 2;
 const PLATFORM_COMMISSION_RATE = 0.15;
 const DRIVER_PAYOUT_PER_ORDER = 3;
+const PROPERTY_HOST_PAYOUT_PER_ORDER = 1.5;
 
 const placeOrder = async (userData: any, payload: Record<string, any>) => {
   const {
@@ -167,6 +169,7 @@ const placeOrder = async (userData: any, payload: Record<string, any>) => {
     if (isPropertyOrder) {
       orderData.propertyId = property._id;
       orderData.propertyHostId = property.hostId;
+      orderData.propertyHostPayout = PROPERTY_HOST_PAYOUT_PER_ORDER;
       // Address NOT set yet — only revealed after PM approval
     } else {
       orderData.deliveryAddress = deliveryAddress;
@@ -350,6 +353,56 @@ const getActiveOrders = async (userData: any, query: QueryParams) => {
   ]);
 
   return { meta, orders };
+};
+
+// Driver's completed-delivery history — powers the "Recent Deliveries" list
+// on the shopper dashboard, which previously had no backend source at all.
+const getDriverHistory = async (userData: any, query: QueryParams) => {
+  const filter = {
+    driverId: userData.userId,
+    status: "delivered",
+  };
+
+  const orderQuery = new QueryBuilder(
+    Order.find(filter)
+      .populate({ path: "userId", select: "name" })
+      .populate({ path: "merchantId", select: "storeName store_logo" })
+      .select("orderId total driverPayout actualDeliveryTime createdAt userId merchantId")
+      .lean(),
+    query,
+  )
+    .sort()
+    .paginate()
+    .fields();
+
+  const [orders, meta] = await Promise.all([
+    orderQuery.modelQuery,
+    orderQuery.countTotal(),
+  ]);
+
+  const orderIds = (orders as any[]).map((o) => o._id);
+  const reviews = await Review.find({
+    orderId: { $in: orderIds },
+    driverId: userData.userId,
+  })
+    .select("orderId rating")
+    .lean();
+  const ratingByOrder = new Map(
+    reviews.map((r: any) => [r.orderId.toString(), r.rating]),
+  );
+
+  const deliveries = (orders as any[]).map((order) => ({
+    id: order._id,
+    orderId: order.orderId,
+    storeName: order.merchantId?.storeName || "",
+    storeLogo: order.merchantId?.store_logo || "",
+    customerName: order.userId?.name || "",
+    earnings: order.driverPayout || 0,
+    rating: ratingByOrder.get(order._id.toString()) || 0,
+    deliveredAt: order.actualDeliveryTime || order.createdAt,
+  }));
+
+  return { meta, deliveries };
 };
 
 const getPendingDeliveryRequests = async (
@@ -827,6 +880,7 @@ const OrderService = {
   getOrder,
   getMyOrders,
   getActiveOrders,
+  getDriverHistory,
   getPendingDeliveryRequests,
   trackOrder,
   acceptOrder,
