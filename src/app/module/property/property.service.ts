@@ -62,6 +62,41 @@ const addProperty = async (req: Request) => {
   return property;
 };
 
+// Orders still in the fulfillment pipeline — excludes unpaid ("pending_payment"),
+// terminal-delivered, and terminal-cancelled orders.
+const ACTIVE_ORDER_STATUSES = [
+  "pending_host_approval",
+  "approved",
+  "accepted_by_merchant",
+  "preparing",
+  "ready_for_pickup",
+  "driver_assigned",
+  "picked_up",
+  "out_for_delivery",
+];
+
+// Adds `activeDeliveries` (count) and `recentOrders` (last 5) to each property
+// so the host app doesn't have to show permanently-zero/empty placeholders.
+const attachPropertyStats = async (properties: any[]) => {
+  return Promise.all(
+    properties.map(async (property) => {
+      const [activeDeliveries, recentOrders] = await Promise.all([
+        Order.countDocuments({
+          propertyId: property._id,
+          status: { $in: ACTIVE_ORDER_STATUSES },
+        }),
+        Order.find({ propertyId: property._id })
+          .sort({ createdAt: -1 })
+          .limit(5)
+          .select("orderId status total createdAt userId")
+          .populate({ path: "userId", select: "name" })
+          .lean(),
+      ]);
+      return { ...property, activeDeliveries, recentOrders };
+    }),
+  );
+};
+
 const getProperties = async (userData: any, query: QueryParams) => {
   const propertyQuery = new QueryBuilder(
     Property.find({ hostId: userData.userId }).lean(),
@@ -73,10 +108,12 @@ const getProperties = async (userData: any, query: QueryParams) => {
     .paginate()
     .fields();
 
-  const [properties, meta] = await Promise.all([
+  const [rawProperties, meta] = await Promise.all([
     propertyQuery.modelQuery,
     propertyQuery.countTotal(),
   ]);
+
+  const properties = await attachPropertyStats(rawProperties);
 
   return { meta, properties };
 };
@@ -100,7 +137,8 @@ const getProperty = async (userData: any, query: { propertyId?: string }) => {
     );
   }
 
-  return property;
+  const [withStats] = await attachPropertyStats([property]);
+  return withStats;
 };
 
 const updateProperty = async (req: Request) => {

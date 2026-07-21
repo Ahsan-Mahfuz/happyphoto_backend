@@ -27,7 +27,10 @@ const placeOrder = async (userData: any, payload: Record<string, any>) => {
     deliveryLat,
     deliveryLong,
     specialInstructions,
+    tipAmount,
   } = payload;
+
+  const totalTip = Math.max(0, Number(tipAmount) || 0);
 
   // Get cart
   const cart = await Cart.findOne({ userId: userData.userId });
@@ -102,6 +105,11 @@ const placeOrder = async (userData: any, payload: Record<string, any>) => {
   }
 
   const createdOrders: any[] = [];
+  const merchantCount = Object.keys(merchantGroups).length;
+  const tipPerOrder =
+    merchantCount > 0
+      ? Math.round((totalTip / merchantCount) * 100) / 100
+      : 0;
 
   // Create one order per merchant
   for (const [merchantId, items] of Object.entries(merchantGroups)) {
@@ -134,7 +142,8 @@ const placeOrder = async (userData: any, payload: Record<string, any>) => {
       Math.round(subtotal * PLATFORM_COMMISSION_RATE * 100) / 100;
     const merchantNetEarnings =
       Math.round((subtotal - platformCommission) * 100) / 100;
-    const total = subtotal + DELIVERY_FEE + SERVICE_FEE;
+    const total =
+      subtotal + DELIVERY_FEE + SERVICE_FEE + tipPerOrder;
 
     const orderData: Record<string, any> = {
       userId: userData.userId,
@@ -144,20 +153,22 @@ const placeOrder = async (userData: any, payload: Record<string, any>) => {
       deliveryFee: DELIVERY_FEE,
       serviceFee: SERVICE_FEE,
       tax: 0,
+      tipAmount: tipPerOrder,
       total,
       platformCommission,
       driverPayout: DRIVER_PAYOUT_PER_ORDER,
       merchantNetEarnings,
       specialInstructions,
+      // Order is not actionable by merchant/host until payment succeeds —
+      // see activateOrderAfterPayment(), invoked from the Stripe webhook.
+      status: "pending_payment",
     };
 
     if (isPropertyOrder) {
-      orderData.status = "pending_host_approval";
       orderData.propertyId = property._id;
       orderData.propertyHostId = property.hostId;
       // Address NOT set yet — only revealed after PM approval
     } else {
-      orderData.status = "pending";
       orderData.deliveryAddress = deliveryAddress;
       if (deliveryLat && deliveryLong) {
         orderData.deliveryCoordinates = {
@@ -169,30 +180,6 @@ const placeOrder = async (userData: any, payload: Record<string, any>) => {
 
     const order = await Order.create(orderData);
     createdOrders.push(order);
-
-    if (isPropertyOrder) {
-      // Create DeliveryRequest for PM
-      await DeliveryRequest.create({
-        orderId: order._id,
-        propertyId: property._id,
-        hostId: property.hostId,
-        customerId: userData.userId,
-      });
-
-      // Notify property host
-      await postNotification(
-        "New Delivery Request",
-        `New delivery request for ${property.propertyName} (${order.orderId})`,
-        property.hostId,
-      );
-    } else {
-      // Notify merchant
-      await postNotification(
-        "New Order Received",
-        `New order ${order.orderId} received`,
-        merchantId,
-      );
-    }
   }
 
   // Clear cart
@@ -201,6 +188,43 @@ const placeOrder = async (userData: any, payload: Record<string, any>) => {
   await cart.save();
 
   return createdOrders;
+};
+
+// Invoked by the Stripe webhook once a payment_intent for this order's
+// linked Payment succeeds. Moves the order out of "pending_payment" and only
+// now creates the host DeliveryRequest / notifies the merchant or host —
+// keeping unpaid orders invisible to the fulfillment pipeline.
+const activateOrderAfterPayment = async (orderId: string) => {
+  const order = await Order.findById(orderId);
+  if (!order || order.status !== "pending_payment") {
+    return;
+  }
+
+  const isPropertyOrder = !!order.propertyId;
+  order.status = isPropertyOrder ? "pending_host_approval" : "pending";
+  await order.save();
+
+  if (isPropertyOrder) {
+    await DeliveryRequest.create({
+      orderId: order._id,
+      propertyId: order.propertyId,
+      hostId: order.propertyHostId,
+      customerId: order.userId,
+    });
+
+    const property = await Property.findById(order.propertyId).lean();
+    await postNotification(
+      "New Delivery Request",
+      `New delivery request for ${property?.propertyName || "your property"} (${order.orderId})`,
+      order.propertyHostId,
+    );
+  } else {
+    await postNotification(
+      "New Order Received",
+      `New order ${order.orderId} received`,
+      order.merchantId,
+    );
+  }
 };
 
 const getOrder = async (userData: any, query: Record<string, any>) => {
@@ -799,6 +823,7 @@ const cancelOrder = async (userData: any, payload: Record<string, any>) => {
 // Continued in Step 30...
 const OrderService = {
   placeOrder,
+  activateOrderAfterPayment,
   getOrder,
   getMyOrders,
   getActiveOrders,

@@ -41,6 +41,7 @@ const EnumUserAccountStatus = {
 };
 
 const EnumOrderStatus = {
+  PENDING_PAYMENT: "pending_payment",
   PENDING: "pending",
   PENDING_HOST_APPROVAL: "pending_host_approval",
   APPROVED: "approved",

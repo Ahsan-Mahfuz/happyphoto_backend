@@ -2,6 +2,7 @@ import ApiError from "../error/ApiError";
 const { status } = require("http-status");
 
 const VALID_TRANSITIONS: Record<string, string[]> = {
+  pending_payment: ["pending", "pending_host_approval", "cancelled"],
   pending: ["accepted_by_merchant", "cancelled"],
   pending_host_approval: ["approved", "cancelled"],
   approved: ["accepted_by_merchant", "cancelled"],

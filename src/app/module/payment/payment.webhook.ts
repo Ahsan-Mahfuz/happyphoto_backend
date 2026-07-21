@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import config from "../../../config";
 import { StripeService } from "./stripe.service";
 import Payment from "./Payment";
+import { OrderService } from "../order/order.service";
 import { logger } from "../../../util/logger";
 
 const handleWebhook = async (req: Request, res: Response) => {
@@ -27,13 +28,18 @@ const handleWebhook = async (req: Request, res: Response) => {
   switch (event.type) {
     case "payment_intent.succeeded": {
       const paymentIntent = event.data.object as any;
-      await Payment.findOneAndUpdate(
+      const payment = await Payment.findOneAndUpdate(
         { stripePaymentIntentId: paymentIntent.id },
         {
           status: "succeeded",
           paymentMethod: paymentIntent.payment_method_types?.[0] || "card",
         },
       );
+      if (payment) {
+        await OrderService.activateOrderAfterPayment(
+          payment.orderId.toString(),
+        );
+      }
       logger.info(`Payment succeeded: ${paymentIntent.id}`);
       break;
     }

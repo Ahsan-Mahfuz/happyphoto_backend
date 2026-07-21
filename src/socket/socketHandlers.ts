@@ -38,6 +38,16 @@ const socketHandlers = socketCatchAsync(async (socket: Socket, io: Server) => {
     await SocketController.updateLocation(socket, io, { ...payload, userId });
   });
 
+  // Manual online/offline toggle (e.g. a driver going "off duty" without
+  // disconnecting the socket) — connect/disconnect above already handle the
+  // implicit online/offline transitions.
+  socket.on(EnumSocketEvent.ONLINE_STATUS, async (payload) => {
+    await SocketController.updateOnlineStatus(socket, io, {
+      ...payload,
+      userId,
+    });
+  });
+
   socket.on(EnumSocketEvent.SEND_MESSAGE, async (payload) => {
     await ChatSocketController.sendMessage(socket, io, { ...payload, userId });
   });

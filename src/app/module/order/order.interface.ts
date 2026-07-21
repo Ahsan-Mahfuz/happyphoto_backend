@@ -31,6 +31,7 @@ export interface IOrder extends Document {
   deliveryFee: number;
   serviceFee: number;
   tax: number;
+  tipAmount: number;
   total: number;
   platformCommission?: number;
   driverPayout?: number;
