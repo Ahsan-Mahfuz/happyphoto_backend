@@ -34,32 +34,43 @@ const seedDatabase = async () => {
     // -------------------------------------------------------------
     // 1. SEED ADMIN
     // -------------------------------------------------------------
-    const adminEmail = config.admin.email || "admin@happyphoto.com";
-    const adminPassword = config.admin.password || "Password123!";
-    const adminName = config.admin.name || "Super Admin";
+    const adminAccounts = [
+      {
+        email: config.admin.email || "happyphotto.admin@yopmail.com",
+        password: config.admin.password || "Admin@1234",
+        name: config.admin.name || "Super Admin",
+      },
+      {
+        email: "admin@happyphoto.com",
+        password: "Password123!",
+        name: "Admin User",
+      },
+    ];
 
-    let adminAuth = await Auth.findOne({ email: adminEmail });
-    if (!adminAuth) {
-      adminAuth = await Auth.create({
-        name: adminName,
-        email: adminEmail,
-        password: adminPassword,
-        role: EnumUserRole.ADMIN,
-        isVerified: true,
-        isActive: true,
-        isBlocked: false,
-      });
-    }
+    for (const a of adminAccounts) {
+      let adminAuth = await Auth.findOne({ email: a.email });
+      if (!adminAuth) {
+        adminAuth = await Auth.create({
+          name: a.name,
+          email: a.email,
+          password: a.password,
+          role: EnumUserRole.ADMIN,
+          isVerified: true,
+          isActive: true,
+          isBlocked: false,
+        });
+      }
 
-    let adminProfile = await Admin.findOne({ email: adminEmail });
-    if (!adminProfile) {
-      await Admin.create({
-        authId: adminAuth._id,
-        name: adminName,
-        email: adminEmail,
-        phoneNumber: "+1 555-0100",
-        profile_image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300",
-      });
+      let adminProfile = await Admin.findOne({ email: a.email });
+      if (!adminProfile) {
+        await Admin.create({
+          authId: adminAuth._id,
+          name: a.name,
+          email: a.email,
+          phoneNumber: "+1 555-0100",
+          profile_image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300",
+        });
+      }
     }
 
     // -------------------------------------------------------------

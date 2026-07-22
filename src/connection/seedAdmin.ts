@@ -5,39 +5,40 @@ import { EnumUserRole } from "../util/enum";
 import { logger, errorLogger } from "../util/logger";
 
 const seedAdmin = async () => {
-  const { name, email, password } = config.admin;
-
-  if (!email || !password) {
-    logger.info("Admin seed skipped: ADMIN_EMAIL/ADMIN_PASSWORD not set");
-    return;
-  }
+  const adminAccounts = [
+    {
+      name: config.admin.name || "Super Admin",
+      email: config.admin.email || "happyphotto.admin@yopmail.com",
+      password: config.admin.password || "Admin@1234",
+    },
+    {
+      name: "Admin User",
+      email: "admin@happyphoto.com",
+      password: "Password123!",
+    },
+  ];
 
   try {
-    const existingAuth = await Auth.findOne({ email });
-
-    if (existingAuth) {
-      logger.info(`Admin already exists: ${email}`);
-      return;
+    for (const acc of adminAccounts) {
+      let existingAuth = await Auth.findOne({ email: acc.email });
+      if (!existingAuth) {
+        existingAuth = await Auth.create({
+          name: acc.name,
+          email: acc.email,
+          password: acc.password,
+          role: EnumUserRole.ADMIN,
+          isVerified: true,
+          isActive: true,
+          isBlocked: false,
+        });
+        await Admin.create({
+          authId: existingAuth._id,
+          name: acc.name,
+          email: acc.email,
+        });
+        logger.info(`Admin seeded successfully: ${acc.email}`);
+      }
     }
-
-    // Saved through the model so the pre-save hook hashes the password.
-    const auth = await Auth.create({
-      name,
-      email,
-      password,
-      role: EnumUserRole.ADMIN,
-      isVerified: true,
-      isActive: true,
-      isBlocked: false,
-    });
-
-    await Admin.create({
-      authId: auth._id,
-      name,
-      email,
-    });
-
-    logger.info(`Admin seeded successfully: ${email}`);
   } catch (err) {
     errorLogger.error("Admin Seed Error:", err);
   }
