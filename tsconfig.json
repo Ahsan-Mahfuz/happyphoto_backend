@@ -18,5 +18,5 @@
     "types": ["node"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "uploads", "logs"]
+  "exclude": ["node_modules", "dist", "uploads", "logs", "**/*.test.ts"]
 }

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import mongoose, { Error as mongooseError } from "mongoose";
 import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 import { MulterError } from "multer";
+import * as Sentry from "@sentry/node";
 import config from "../../config";
 import handleValidationError from "../../error/handleValidationError";
 import handleCastError from "../../error/handleCastError";
@@ -176,6 +177,12 @@ const globalErrorHandler = (
   // Ensure valid HTTP status code
   if (!Number.isInteger(statusCode) || statusCode < 100 || statusCode > 599) {
     statusCode = 500;
+  }
+
+  // Only report genuine server-side failures — 4xx (bad request, forbidden,
+  // not found, etc.) are expected/handled outcomes, not crashes.
+  if (statusCode >= 500) {
+    Sentry.captureException(error);
   }
 
   // Response

@@ -376,20 +376,28 @@ const processOrderPayouts = async (orderId: string) => {
   }
 };
 
+// Which Order field identifies "my" orders, and which field holds "my" cut
+// of each one — varies by payee role.
+const earningsFieldsFor = (role: string) => ({
+  ownerField:
+    role === "MERCHANT"
+      ? "merchantId"
+      : role === "PROPERTY_HOST"
+        ? "propertyHostId"
+        : "driverId",
+  payoutField:
+    role === "MERCHANT"
+      ? "merchantNetEarnings"
+      : role === "PROPERTY_HOST"
+        ? "propertyHostPayout"
+        : "driverPayout",
+});
+
 const getMyEarnings = async (userData: any, query: Record<string, any>) => {
   const period = query.period || "week";
-  const field =
-    userData.role === "MERCHANT"
-      ? "merchantId"
-      : userData.role === "PROPERTY_HOST"
-        ? "propertyHostId"
-        : "driverId";
-  const earningsField =
-    userData.role === "MERCHANT"
-      ? "merchantNetEarnings"
-      : userData.role === "PROPERTY_HOST"
-        ? "propertyHostPayout"
-        : "driverPayout";
+  const { ownerField: field, payoutField: earningsField } = earningsFieldsFor(
+    userData.role,
+  );
 
   let dateFilter: Record<string, any> = {};
   const now = new Date();
@@ -460,6 +468,77 @@ const getMyEarnings = async (userData: any, query: Record<string, any>) => {
   };
 };
 
+// Time-bucketed earnings for the earnings-page bar chart — "today" buckets
+// by time-of-day, "week" buckets by weekday (Mon-Sun), "month" buckets by
+// week-of-month (W1-W4, any days past W4 fold into it).
+const getMyEarningsBreakdown = async (
+  userData: any,
+  query: Record<string, any>,
+) => {
+  const period = query.period || "week";
+  const { ownerField: field, payoutField: earningsField } = earningsFieldsFor(
+    userData.role,
+  );
+
+  const now = new Date();
+  let start: Date;
+  let end: Date;
+  let labels: string[];
+  let bucketOf: (d: Date) => number;
+
+  if (period === "today") {
+    start = new Date(now);
+    start.setHours(0, 0, 0, 0);
+    end = new Date(start);
+    end.setDate(end.getDate() + 1);
+    labels = ["Morning", "Afternoon", "Evening"];
+    bucketOf = (d) => {
+      const hour = d.getHours();
+      if (hour < 12) return 0;
+      if (hour < 17) return 1;
+      return 2;
+    };
+  } else if (period === "month") {
+    start = new Date(now.getFullYear(), now.getMonth(), 1);
+    end = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    labels = ["W1", "W2", "W3", "W4"];
+    bucketOf = (d) => Math.min(3, Math.floor((d.getDate() - 1) / 7));
+  } else {
+    // week — current calendar week, Monday through Sunday.
+    const dayIndex = (now.getDay() + 6) % 7; // Mon=0 ... Sun=6
+    start = new Date(now);
+    start.setDate(now.getDate() - dayIndex);
+    start.setHours(0, 0, 0, 0);
+    end = new Date(start);
+    end.setDate(end.getDate() + 7);
+    labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    bucketOf = (d) => (d.getDay() + 6) % 7;
+  }
+
+  const orders = await Order.find({
+    [field]: userData.userId,
+    status: "delivered",
+    createdAt: { $gte: start, $lt: end },
+  })
+    .select(`${earningsField} createdAt`)
+    .lean();
+
+  const sums = new Array(labels.length).fill(0);
+  for (const order of orders as any[]) {
+    const idx = bucketOf(new Date(order.createdAt));
+    sums[idx] += order[earningsField] || 0;
+  }
+
+  const max = Math.max(...sums, 0.01);
+  const buckets = labels.map((label, i) => ({
+    label,
+    amount: Math.round(sums[i] * 100) / 100,
+    normalized: Math.round((sums[i] / max) * 100) / 100,
+  }));
+
+  return { buckets };
+};
+
 const getMyTransactions = async (userData: any, query: QueryParams) => {
   const isPropertyHost = userData.role === "PROPERTY_HOST";
   const isDriver = userData.role === "DRIVER";
@@ -517,6 +596,7 @@ const PaymentService = {
   createIntent,
   getPayment,
   refund,
+  earningsFieldsFor,
   createSetupIntent,
   getPaymentMethods,
   deletePaymentMethod,
@@ -525,6 +605,7 @@ const PaymentService = {
   getConnectStatus,
   processOrderPayouts,
   getMyEarnings,
+  getMyEarningsBreakdown,
   getMyTransactions,
 };
 

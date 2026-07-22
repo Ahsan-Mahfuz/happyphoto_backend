@@ -123,6 +123,22 @@ const getMyEarnings = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getMyEarningsBreakdown = catchAsync(
+  async (req: Request, res: Response) => {
+    if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
+    const result = await PaymentService.getMyEarningsBreakdown(
+      req.user,
+      req.query,
+    );
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Earnings breakdown retrieved",
+      data: result,
+    });
+  },
+);
+
 const getMyTransactions = catchAsync(async (req: Request, res: Response) => {
   if (!req.user) throw new ApiError(status.UNAUTHORIZED, "Unauthorized");
   const result = await PaymentService.getMyTransactions(
@@ -149,6 +165,7 @@ const PaymentController = {
   createConnectAccount,
   getConnectStatus,
   getMyEarnings,
+  getMyEarningsBreakdown,
   getMyTransactions,
 };
 

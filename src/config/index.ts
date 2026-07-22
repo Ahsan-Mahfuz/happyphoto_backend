@@ -82,6 +82,9 @@ const config = {
     stripe_webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
     stripe_webhook_secret_live: process.env.STRIPE_WEBHOOK_SECRET_LIVE,
   },
+  // Optional — crash/error reporting. Get a DSN free at sentry.io. Left
+  // unset, Sentry.init() below just no-ops (not required, unlike Stripe).
+  sentry_dsn: process.env.SENTRY_DSN,
   variables: {
     email_temp_image: process.env.EMAIL_TEMP_IMAGE,
     email_temp_text_secondary_color:

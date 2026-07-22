@@ -1,31 +1,27 @@
-import assert from "assert";
 import ProductService from "./product.service";
 import { Product } from "./Product";
 
 /**
- * Unit tests for ProductService using Node's native assert.
- * We are mocking the Mongoose model methods to ensure these are pure unit tests
- * that do not require a live database connection.
+ * Unit tests for ProductService — mocks the Mongoose model methods so these
+ * are pure unit tests that don't require a live database connection.
  */
+describe("ProductService", () => {
+  const originalCreate = Product.create;
+  const originalFindOne = Product.findOne;
+  const originalFindById = Product.findById;
+  const originalFindByIdAndUpdate = Product.findByIdAndUpdate;
+  const originalDeleteOne = Product.deleteOne;
 
-// We will save original methods to restore them later.
-const originalCreate = Product.create;
-const originalFindOne = Product.findOne;
-const originalFindById = Product.findById;
-const originalFindByIdAndUpdate = Product.findByIdAndUpdate;
-const originalDeleteOne = Product.deleteOne;
+  afterEach(() => {
+    Product.create = originalCreate;
+    Product.findOne = originalFindOne;
+    Product.findById = originalFindById;
+    Product.findByIdAndUpdate = originalFindByIdAndUpdate;
+    Product.deleteOne = originalDeleteOne;
+  });
 
-async function runTests() {
-  console.log("Starting unit tests for Product Module...\n");
-
-  try {
-    // ------------------------------------------------------------------------
-    // Test 1: createProduct
-    // ------------------------------------------------------------------------
-    console.log("Running: testCreateProduct");
+  it("createProduct assigns the authenticated merchant and uploaded image path", async () => {
     let createDataReceived: any = null;
-    
-    // Mock Product.create
     Product.create = (async (data: any) => {
       createDataReceived = data;
       return { ...data, _id: "mocked-product-id" };
@@ -38,154 +34,94 @@ async function runTests() {
         category: "Food",
         price: 10,
         quantity: 5,
-        description: "Test description"
+        description: "Test description",
       },
-      files: {
-        product_image: [{ path: "uploads/test.jpg" }]
-      }
+      files: { product_image: [{ path: "uploads/test.jpg" }] },
     } as any;
 
     const createdProduct = await ProductService.createProduct(mockCreateReq);
-    
-    assert.ok(createdProduct, "Product should be returned");
-    assert.strictEqual(createdProduct._id, "mocked-product-id");
-    assert.strictEqual(createDataReceived.merchant, "merchant-123", "Merchant ID should be assigned");
-    assert.strictEqual(createDataReceived.product_image, "uploads/test.jpg", "Image path should be assigned");
-    assert.strictEqual(createDataReceived.name, "Test Product");
-    console.log("✅ testCreateProduct passed\n");
 
+    expect(createdProduct._id).toBe("mocked-product-id");
+    expect(createDataReceived.merchant).toBe("merchant-123");
+    expect(createDataReceived.product_image).toBe("uploads/test.jpg");
+    expect(createDataReceived.name).toBe("Test Product");
+  });
 
-    // ------------------------------------------------------------------------
-    // Test 2: getProduct
-    // ------------------------------------------------------------------------
-    console.log("Running: testGetProduct");
-    let findOneQuery: any = null;
+  it("getProduct returns the product by id, and 404s when not found", async () => {
+    Product.findOne = ((query: any) => ({
+      lean: async () =>
+        query._id === "mocked-product-id"
+          ? { _id: "mocked-product-id", name: "Test Product" }
+          : null,
+    })) as any;
 
-    // Mock Product.findOne
-    Product.findOne = ((query: any) => {
-      findOneQuery = query;
-      return {
-        lean: async () => {
-          if (query._id === "mocked-product-id") {
-            return { _id: "mocked-product-id", name: "Test Product" };
+    const fetched = await ProductService.getProduct(
+      {},
+      { productId: "mocked-product-id" },
+    );
+    expect(fetched._id).toBe("mocked-product-id");
+
+    await expect(
+      ProductService.getProduct({}, { productId: "invalid-id" }),
+    ).rejects.toMatchObject({ statusCode: 404 });
+  });
+
+  it("updateProduct applies changes for the owning merchant, rejects others", async () => {
+    Product.findById = (async (id: any) =>
+      id === "mocked-product-id"
+        ? {
+            _id: "mocked-product-id",
+            merchant: "merchant-123",
+            toString: () => "mocked-product-id",
           }
-          return null;
-        }
-      };
-    }) as any;
+        : null) as any;
 
-    const mockGetQuery = { productId: "mocked-product-id" };
-    const fetchedProduct = await ProductService.getProduct({}, mockGetQuery);
-
-    assert.ok(fetchedProduct, "Product should be retrieved");
-    assert.strictEqual(fetchedProduct._id, "mocked-product-id");
-    assert.strictEqual(findOneQuery._id, "mocked-product-id", "Should query by correct productId");
-    
-    // Test Not Found Scenario
-    try {
-      await ProductService.getProduct({}, { productId: "invalid-id" });
-      assert.fail("Should have thrown an ApiError for not found");
-    } catch (err: any) {
-      assert.strictEqual(err.statusCode, 404, "Should throw 404 Not Found status");
-    }
-    console.log("✅ testGetProduct passed\n");
-
-
-    // ------------------------------------------------------------------------
-    // Test 3: updateProduct
-    // ------------------------------------------------------------------------
-    console.log("Running: testUpdateProduct");
     let updateIdReceived: any = null;
     let updateDataReceived: any = null;
-
-    // Mock Product.findById
-    Product.findById = (async (id: any) => {
-      if (id === "mocked-product-id") {
-        return {
-          _id: "mocked-product-id",
-          merchant: "merchant-123", // String or ObjectId-like that provides toString()
-          toString: () => "mocked-product-id"
-        };
-      }
-      return null;
-    }) as any;
-
-    // Mock Product.findByIdAndUpdate
     Product.findByIdAndUpdate = (async (id: any, data: any) => {
       updateIdReceived = id;
       updateDataReceived = data;
       return { _id: id, ...data };
     }) as any;
 
-    const mockUpdateReq = {
+    const updated = await ProductService.updateProduct({
       user: { userId: "merchant-123" },
-      body: {
-        productId: "mocked-product-id",
-        price: 20
-      },
-      files: {} // No new image
-    } as any;
-
-    const updatedProduct = await ProductService.updateProduct(mockUpdateReq);
-    
-    assert.strictEqual(updateIdReceived, "mocked-product-id");
-    assert.strictEqual(updateDataReceived.price, 20);
-    assert.strictEqual(updatedProduct.price, 20);
-
-    // Test Unauthorized Scenario
-    const mockUpdateReqUnauthorized = {
-      user: { userId: "wrong-merchant" },
       body: { productId: "mocked-product-id", price: 20 },
-      files: {}
-    } as any;
+      files: {},
+    } as any);
 
-    try {
-      await ProductService.updateProduct(mockUpdateReqUnauthorized);
-      assert.fail("Should have thrown an ApiError for unauthorized");
-    } catch (err: any) {
-      assert.strictEqual(err.statusCode, 401, "Should throw 401 Unauthorized");
-    }
-    console.log("✅ testUpdateProduct passed\n");
+    expect(updateIdReceived).toBe("mocked-product-id");
+    expect(updateDataReceived.price).toBe(20);
+    expect(updated.price).toBe(20);
 
+    await expect(
+      ProductService.updateProduct({
+        user: { userId: "wrong-merchant" },
+        body: { productId: "mocked-product-id", price: 20 },
+        files: {},
+      } as any),
+    ).rejects.toMatchObject({ statusCode: 401 });
+  });
 
-    // ------------------------------------------------------------------------
-    // Test 4: deleteProduct
-    // ------------------------------------------------------------------------
-    console.log("Running: testDeleteProduct");
+  it("deleteProduct removes the product by id", async () => {
     let deleteIdReceived: any = null;
-
-    // Mock Product.deleteOne
+    Product.findById = (async (id: any) => ({
+      _id: id,
+      merchant: "merchant-123",
+      toString: () => id,
+      product_image: undefined,
+    })) as any;
     Product.deleteOne = (async (query: any) => {
       deleteIdReceived = query._id;
       return { acknowledged: true, deletedCount: 1 };
     }) as any;
 
-    const mockDeletePayload = { productId: "mocked-product-id" };
-    const mockUserData = { userId: "merchant-123" };
+    const result = await ProductService.deleteProduct(
+      { userId: "merchant-123" },
+      { productId: "mocked-product-id" },
+    );
 
-    const deleteResult = await ProductService.deleteProduct(mockUserData, mockDeletePayload);
-
-    assert.strictEqual(deleteIdReceived, "mocked-product-id");
-    assert.strictEqual(deleteResult.deletedCount, 1);
-    console.log("✅ testDeleteProduct passed\n");
-
-    console.log("🎉 All Unit Tests Passed Successfully!");
-  } catch (error) {
-    console.error("❌ Test Failed:");
-    console.error(error);
-  } finally {
-    // Restore original Mongoose methods to keep global state clean
-    Product.create = originalCreate;
-    Product.findOne = originalFindOne;
-    Product.findById = originalFindById;
-    Product.findByIdAndUpdate = originalFindByIdAndUpdate;
-    Product.deleteOne = originalDeleteOne;
-  }
-}
-
-// Execute the tests if this script is run directly
-if (require.main === module) {
-  runTests();
-}
-
-export { runTests };
+    expect(deleteIdReceived).toBe("mocked-product-id");
+    expect(result.deletedCount).toBe(1);
+  });
+});

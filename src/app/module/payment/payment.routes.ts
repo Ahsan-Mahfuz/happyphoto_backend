@@ -62,6 +62,11 @@ router
     PaymentController.getMyEarnings,
   )
   .get(
+    "/my-earnings-breakdown",
+    auth(config.auth_level.all),
+    PaymentController.getMyEarningsBreakdown,
+  )
+  .get(
     "/my-transactions",
     auth(config.auth_level.all),
     PaymentController.getMyTransactions,
