@@ -1,25 +1,18 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
 import mongoose from "mongoose";
+import app from "../src/app";
+import connectDB from "../src/connection/connectDB";
 
-let cachedApp: any = null;
-let cachedConnection: typeof mongoose | null = null;
+let isConnected = false;
 
-async function getApp() {
-  if (cachedApp) return cachedApp;
-  const { default: connectDB } = await import(
-    "../src/connection/connectDB"
-  );
-  if (!cachedConnection || mongoose.connection.readyState !== 1) {
-    cachedConnection = await connectDB();
-  }
-  const { default: app } = await import("../src/app");
-  cachedApp = app;
-  return app;
+async function ensureDB() {
+  if (isConnected && mongoose.connection.readyState === 1) return;
+  await connectDB();
+  isConnected = true;
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   try {
-    const app = await getApp();
+    await ensureDB();
     return app(req, res);
   } catch (error: any) {
     console.error("Vercel handler error:", error);
