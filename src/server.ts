@@ -1,6 +1,7 @@
 import { logger, errorLogger } from "./util/logger";
 import connectDB from "./connection/connectDB";
 import seedAdmin from "./connection/seedAdmin";
+import seedDatabase from "./connection/seedDatabase";
 import config from "./config";
 import mainServer from "./connection/socket";
 
@@ -10,6 +11,7 @@ async function main() {
     logger.info(`DB Connected Successfully at ${new Date().toLocaleString()}`);
 
     await seedAdmin();
+    await seedDatabase();
 
     const port = Number(process.env.PORT || config.port) || 8001;
     mainServer.listen(port, "0.0.0.0", () => {

@@ -6,6 +6,7 @@
     "start": "node dist/server.js",
     "start:js": "node src/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "seed": "tsx src/util/runSeed.ts",
     "dev:js": "nodemon src/server.js",
     "clean": "rimraf dist",
     "build": "npm run clean && tsc -p tsconfig.json",
