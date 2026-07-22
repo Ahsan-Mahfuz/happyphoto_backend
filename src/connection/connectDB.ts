@@ -6,7 +6,12 @@ const connectDB = async () => {
     if (mongoose.connection.readyState === 1) {
       return mongoose;
     }
-    await mongoose.connect(config.database_url);
+    if (!config.database_url) {
+      throw new Error("MONGO_URL environment variable is missing!");
+    }
+    await mongoose.connect(config.database_url, {
+      serverSelectionTimeoutMS: 10000,
+    });
     console.log(`DB connection successful! at ${new Date().toLocaleString()}`);
     return mongoose;
   } catch (err) {

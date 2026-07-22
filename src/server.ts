@@ -11,8 +11,9 @@ async function main() {
 
     await seedAdmin();
 
-    mainServer.listen(Number(config.port), config.base_url, () => {
-      logger.info(`App listening on http://${config.base_url}:${config.port}`);
+    const port = Number(process.env.PORT || config.port) || 8001;
+    mainServer.listen(port, "0.0.0.0", () => {
+      logger.info(`App listening on http://0.0.0.0:${port}`);
     });
 
     process.on("unhandledRejection", (error) => {
