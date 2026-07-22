@@ -22,41 +22,48 @@ export const myFormat = printf((info: LogInfo) => {
 });
 
 const logDir = path.join(process.cwd(), "logs", "winston");
+const isServerless = !!process.env.VERCEL;
+
+const fileTransports = isServerless
+  ? []
+  : [
+      new transports.File({
+        level: "info",
+        filename: path.join(logDir, "successes", "um-success.log"),
+      }),
+      new DailyRotateFile({
+        level: "info",
+        filename: path.join(logDir, "successes", "um-%DATE%-success.log"),
+        datePattern: "YYYY-MM-DD-HH",
+        zippedArchive: true,
+        maxSize: "20m",
+        maxFiles: "14d",
+      }),
+    ];
+
+const errorFileTransports = isServerless
+  ? []
+  : [
+      new DailyRotateFile({
+        level: "error",
+        filename: path.join(logDir, "errors", "um-%DATE%-error.log"),
+        datePattern: "YYYY-MM-DD-HH",
+        zippedArchive: true,
+        maxSize: "20m",
+        maxFiles: "14d",
+      }),
+    ];
 
 // Logger for general information
 export const logger = createLogger({
   level: "info",
   format: combine(label({ label: "Fridge Fillers" }), timestamp(), myFormat),
-  transports: [
-    new transports.Console(),
-    new transports.File({
-      level: "info",
-      filename: path.join(logDir, "successes", "um-success.log"),
-    }),
-    new DailyRotateFile({
-      level: "info",
-      filename: path.join(logDir, "successes", "um-%DATE%-success.log"),
-      datePattern: "YYYY-MM-DD-HH",
-      zippedArchive: true,
-      maxSize: "20m",
-      maxFiles: "14d",
-    }),
-  ],
+  transports: [new transports.Console(), ...fileTransports],
 });
 
 // Logger for errors
 export const errorLogger = createLogger({
   level: "error",
   format: combine(label({ label: "Fridge Fillers" }), timestamp(), myFormat),
-  transports: [
-    new transports.Console(),
-    new DailyRotateFile({
-      level: "error",
-      filename: path.join(logDir, "errors", "um-%DATE%-error.log"),
-      datePattern: "YYYY-MM-DD-HH",
-      zippedArchive: true,
-      maxSize: "20m",
-      maxFiles: "14d",
-    }),
-  ],
+  transports: [new transports.Console(), ...errorFileTransports],
 });
