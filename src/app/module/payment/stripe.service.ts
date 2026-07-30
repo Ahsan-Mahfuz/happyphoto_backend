@@ -210,7 +210,10 @@ const createEphemeralKey = async (
   customerId: string,
 ): Promise<Stripe.EphemeralKey> => {
   try {
-    return await stripe.ephemeralKeys.create({ customer: customerId });
+    return await stripe.ephemeralKeys.create(
+      { customer: customerId },
+      { apiVersion: (stripe as any).getApiField("version") },
+    );
   } catch (error: any) {
     throw new ApiError(
       status.BAD_REQUEST,
