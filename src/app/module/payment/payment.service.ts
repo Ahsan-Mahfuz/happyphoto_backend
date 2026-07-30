@@ -152,7 +152,16 @@ const ensureStripeCustomer = async (userData: any) => {
   }
 
   if (user.stripeCustomerId) {
-    return { user, customerId: user.stripeCustomerId };
+    // The saved id may belong to a different Stripe account than the one
+    // currently configured (e.g. STRIPE_SECRET_KEY got rotated to a new
+    // account) — verify it still resolves before trusting it, otherwise
+    // every downstream Stripe call fails with "No such customer".
+    const existing = await StripeService.retrieveCustomer(
+      user.stripeCustomerId,
+    );
+    if (existing) {
+      return { user, customerId: user.stripeCustomerId };
+    }
   }
 
   const customer = await StripeService.createCustomer(user.email, user.name);

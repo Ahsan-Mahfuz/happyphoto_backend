@@ -206,6 +206,22 @@ const createCustomer = async (
   }
 };
 
+// Confirms a customer id still resolves on THIS Stripe account/keys — a
+// customer id saved while a different Stripe account's keys were configured
+// (e.g. after rotating STRIPE_SECRET_KEY to a new account) will 404 here
+// rather than at charge time. Returns null instead of throwing so callers
+// can fall back to creating a fresh customer.
+const retrieveCustomer = async (
+  customerId: string,
+): Promise<Stripe.Customer | null> => {
+  try {
+    const customer = await stripe.customers.retrieve(customerId);
+    return customer.deleted ? null : (customer as Stripe.Customer);
+  } catch (error) {
+    return null;
+  }
+};
+
 const createEphemeralKey = async (
   customerId: string,
 ): Promise<Stripe.EphemeralKey> => {
@@ -318,6 +334,7 @@ const StripeService = {
   createTransferReversal,
   getAccountStatus,
   createCustomer,
+  retrieveCustomer,
   createEphemeralKey,
   createSetupIntent,
   listPaymentMethods,
